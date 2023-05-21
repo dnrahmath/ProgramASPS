@@ -103,6 +103,8 @@ public class AaLoginRegisterPanel extends javax.swing.JFrame {
         //ubah warna ketika diselect
         btnLoginForm.setBackground(SelectColor);
         btnRegisterForm.setBackground(unSelectColor);
+        
+        txtmaillogin.requestFocusInWindow();
     };
     
     void registerPanelFunc(){
@@ -119,6 +121,8 @@ public class AaLoginRegisterPanel extends javax.swing.JFrame {
         //ubah warna ketika diselect
         btnLoginForm.setBackground(unSelectColor);
         btnRegisterForm.setBackground(SelectColor);
+        
+        txtnm.requestFocusInWindow();
     };
     
     void loginFunc(){
