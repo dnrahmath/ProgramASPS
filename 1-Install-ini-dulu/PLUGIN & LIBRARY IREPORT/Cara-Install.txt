@@ -1,0 +1,57 @@
+
+#######################################################################################################
+
+Source :
+TUTORIAL/CARA INSTALL IREPORT PADA NETBEANS
+https://www.youtube.com/watch?v=IuO5QpvlsB0
+
+#######################################################################################################
+
+
+
+----#####---------------------------------------------------------------------------------------------------
+*[Install Plugin]*
+
+Netbeans 8.2 -> Tools -> Plugins -> Downloaded -> 
+Add Plugins ->   ( Tambahkan semua yg didalam folder /PLUGIN IREPORT NETBEANS/ ) 
+-> Install -> Accept -> (Ikuti sampai selesai)
+
+----------------------------------------------
+
+Restart Netbeans nya
+
+Netbeans 8.2 -> Tools -> Libraries -> 
+(lalu check cari JasperReports 3.0.1 )  ->  //untuk jaga2 (JasperReports 3.0.1)
+
+
+
+----#####---------------------------------------------------------------------------------------------------
+*[Memasang Library Satuan dengan Class]*
+
+Netbeans 8.2 -> Tools -> Libraries -> New Library 
+	-> Library Name (JasperReport)
+	-> Library Type (Class Libraries)
+-> Add JAR/Folder -> ( Tambahkan semua yg didalam folder /LIBRARY IREPORT/ )
+
+
+----#####---------------------------------------------------------------------------------------------------
+*[Memasang Library Pada ProjectJava]*
+
+Netbeans 8.2
+lihat ke menu kiri atas (Tab Project) -> klik RMB (Klik Kanan)(akan muncul Menu List) 
+-> Properties -> Libraries -> Add Library... -> pilih JasperReport -> Add Library -> OK
+
+------------------------------------------------------------------------------------------------------------
+
+//
+//
+
+#######################################################################################################
+
+untuk menggunakan image pada jesper -> gambar memang harus melalui path C:\\..\\ProjectJava
+masih blm bisa di sederhanakan menjadi ./ , ../ , atau lainnya 
+
+#######################################################################################################
+
+//
+//
