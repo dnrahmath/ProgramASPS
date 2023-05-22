@@ -30,7 +30,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="bodyPanel" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="mainPanel" max="32767" attributes="0"/>
+              <Component id="mainPanel" pref="1204" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -161,7 +161,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="panelIsi" max="32767" attributes="0"/>
                           <Component id="panelBtn" max="32767" attributes="0"/>
@@ -420,13 +420,13 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="panelBtn2" max="32767" attributes="0"/>
                           <Component id="panelIsi2" max="32767" attributes="0"/>
                           <Component id="panelJudul2" alignment="0" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="233" max="32767" attributes="0"/>
+                      <EmptySpace pref="266" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

@@ -228,13 +228,13 @@ public class FaAdmin extends javax.swing.JFrame {
             mDataBuku.setVisible(true);
         }else if("tbl_pinjam".equals(ModeData)){ 
             this.dispose();
-            GcMenuDataPinjam mDataPinjam = new GcMenuDataPinjam();
-            mDataPinjam.setDefaultCloseOperation(mDataPinjam.DISPOSE_ON_CLOSE);
-            mDataPinjam.dataIn(DataLogin);
-            mDataPinjam.dataTable(listColmn,listColmnRow,ModeData,ModeExec);  //targetColumn, isiColmnRow, namaTable, jenisEksekusi
-            mDataPinjam.setValue();
-            mDataPinjam.setLocationRelativeTo(null);
-            mDataPinjam.setVisible(true);
+//            GcMenuDataPinjam mDataPinjam = new GcMenuDataPinjam();
+//            mDataPinjam.setDefaultCloseOperation(mDataPinjam.DISPOSE_ON_CLOSE);
+//            mDataPinjam.dataIn(DataLogin);
+//            mDataPinjam.dataTable(listColmn,listColmnRow,ModeData,ModeExec);  //targetColumn, isiColmnRow, namaTable, jenisEksekusi
+//            mDataPinjam.setValue();
+//            mDataPinjam.setLocationRelativeTo(null);
+//            mDataPinjam.setVisible(true);
         }else if("tbl_kotakSaran".equals(ModeData)){
             this.dispose();
             GdMenuDataKotakSaran mDataKotakSaran = new GdMenuDataKotakSaran();
@@ -260,7 +260,9 @@ public class FaAdmin extends javax.swing.JFrame {
     }
     
     public void getDataUser(){
-        btnInsert1.setVisible(false);
+        btnInsert.setText("INSERT");
+        btnUpdate.setText("UPDATE");
+        btnUpdate.setVisible(true);
         //ComboBox Pilihan  -------
         CustomListColmn = new String[11];
         CustomListColmn[0] = "Id";
@@ -312,7 +314,9 @@ public class FaAdmin extends javax.swing.JFrame {
     };
     
     public void getDataBuku(){
-        btnInsert1.setVisible(false);
+        btnInsert.setText("INSERT");
+        btnUpdate.setText("UPDATE");
+        btnUpdate.setVisible(true);
         //ComboBox Pilihan  -------
         CustomListColmn = new String[7];
         CustomListColmn[0] = "Id";
@@ -356,10 +360,8 @@ public class FaAdmin extends javax.swing.JFrame {
     }
     
     public void getDataPinjam(){
-        btnInsert.setText("TAMBAH PEMINJAM BUKU");
-        btnUpdate.setText("UBAH PEMINJAM BUKU");
-        btnInsert1.setText("KEMBALIKAN PEMINJAM BUKU");
-        btnInsert1.setVisible(true);
+        btnInsert.setText("OPERATOR PEMINJAMAN DAN PENGEMBALIAN BUKU");
+        btnUpdate.setVisible(false);
         //ComboBox Pilihan  -------
         CustomListColmn = new String[7];
         CustomListColmn[0] = "Id Pinjam";
@@ -402,7 +404,9 @@ public class FaAdmin extends javax.swing.JFrame {
     }
     
     public void getDataKotakSaran(){
-        btnInsert1.setVisible(false);
+        btnInsert.setText("INSERT");
+        btnUpdate.setText("UPDATE");
+        btnUpdate.setVisible(true);
         //ComboBox Pilihan  -------
         CustomListColmn = new String[4];
         CustomListColmn[0] = "Id";
@@ -438,7 +442,9 @@ public class FaAdmin extends javax.swing.JFrame {
     }
     
     public void getDataTamu(){
-        btnInsert1.setVisible(false);
+        btnInsert.setText("INSERT");
+        btnUpdate.setText("UPDATE");
+        btnUpdate.setVisible(true);
         //ComboBox Pilihan  -------
         CustomListColmn = new String[5];
         CustomListColmn[0] = "Id";
@@ -501,7 +507,6 @@ public class FaAdmin extends javax.swing.JFrame {
         btnInsert = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
         btnDel = new javax.swing.JButton();
-        btnInsert1 = new javax.swing.JButton();
         btnExport = new javax.swing.JButton();
         panelSearch = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
@@ -683,15 +688,6 @@ public class FaAdmin extends javax.swing.JFrame {
             }
         });
 
-        btnInsert1.setBackground(new java.awt.Color(255, 255, 255));
-        btnInsert1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/programasps/images/icon_asps/iloveimg-resized-16/add-user.png"))); // NOI18N
-        btnInsert1.setText("INSERT");
-        btnInsert1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInsert1ActionPerformed(evt);
-            }
-        });
-
         btnExport.setBackground(new java.awt.Color(255, 255, 255));
         btnExport.setIcon(new javax.swing.ImageIcon(getClass().getResource("/programasps/images/icon_asps/iloveimg-resized-16/export.png"))); // NOI18N
         btnExport.setText("EXPORT");
@@ -707,18 +703,16 @@ public class FaAdmin extends javax.swing.JFrame {
             panelBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBtnLayout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addGroup(panelBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelBtnLayout.createSequentialGroup()
-                        .addComponent(btnInsert1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnExport, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelBtnLayout.createSequentialGroup()
-                        .addComponent(btnInsert, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(45, 45, 45)
-                        .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(40, 40, 40)
-                        .addComponent(btnDel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(btnInsert, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+                .addGap(45, 45, 45)
+                .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
+                .addGap(40, 40, 40)
+                .addComponent(btnDel, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
                 .addGap(23, 23, 23))
+            .addGroup(panelBtnLayout.createSequentialGroup()
+                .addGap(240, 240, 240)
+                .addComponent(btnExport, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelBtnLayout.setVerticalGroup(
             panelBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -729,9 +723,7 @@ public class FaAdmin extends javax.swing.JFrame {
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDel, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelBtnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnInsert1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnExport, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnExport, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
@@ -894,9 +886,6 @@ public class FaAdmin extends javax.swing.JFrame {
     private void btnDataUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataUserActionPerformed
         // TODO add your handling code here:
         getDataUser();
-        btnInsert.setText("INSERT");
-        btnUpdate.setText("UPDATE");
-        btnInsert1.setVisible(false);
         btnDataUser.setBackground(SelectColor);
         btnDataBuku.setBackground(unSelectColor);
         btnDataPinjam.setBackground(unSelectColor);
@@ -907,9 +896,6 @@ public class FaAdmin extends javax.swing.JFrame {
 
     private void btnDataBukuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataBukuActionPerformed
         getDataBuku();
-        btnInsert.setText("INSERT");
-        btnUpdate.setText("UPDATE");
-        btnInsert1.setVisible(false);
         btnDataUser.setBackground(unSelectColor);
         btnDataBuku.setBackground(SelectColor);
         btnDataPinjam.setBackground(unSelectColor);
@@ -921,10 +907,6 @@ public class FaAdmin extends javax.swing.JFrame {
     private void btnDataPinjamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataPinjamActionPerformed
         // TODO add your handling code here
         getDataPinjam();
-        btnInsert.setText("TAMBAH PEMINJAM BUKU");
-        btnUpdate.setText("UBAH PEMINJAM BUKU");
-        btnInsert1.setText("KEMBALIKAN PEMINJAM BUKU");
-        btnInsert1.setVisible(true);
         btnDataUser.setBackground(unSelectColor);
         btnDataBuku.setBackground(unSelectColor);
         btnDataPinjam.setBackground(SelectColor);
@@ -936,9 +918,6 @@ public class FaAdmin extends javax.swing.JFrame {
     private void btnDataKotakSaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataKotakSaranActionPerformed
         // TODO add your handling code here:
         getDataKotakSaran();
-        btnInsert.setText("INSERT");
-        btnUpdate.setText("UPDATE");
-        btnInsert1.setVisible(false);
         btnDataUser.setBackground(unSelectColor);
         btnDataBuku.setBackground(unSelectColor);
         btnDataPinjam.setBackground(unSelectColor);
@@ -950,9 +929,6 @@ public class FaAdmin extends javax.swing.JFrame {
     private void btnDataTamuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataTamuActionPerformed
         // TODO add your handling code here:
         getDataTamu();
-        btnInsert.setText("INSERT");
-        btnUpdate.setText("UPDATE");
-        btnInsert1.setVisible(false);
         btnDataUser.setBackground(unSelectColor);
         btnDataBuku.setBackground(unSelectColor);
         btnDataPinjam.setBackground(unSelectColor);
@@ -1184,10 +1160,6 @@ public class FaAdmin extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnExportActionPerformed
 
-    private void btnInsert1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsert1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnInsert1ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -1237,7 +1209,6 @@ public class FaAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnExport;
     private javax.swing.JButton btnInsert;
-    private javax.swing.JButton btnInsert1;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
