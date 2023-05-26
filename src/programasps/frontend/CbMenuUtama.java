@@ -97,7 +97,7 @@ public class CbMenuUtama extends javax.swing.JFrame {
         btnLogout = new javax.swing.JButton();
         btnAdmin = new javax.swing.JButton();
         panelBtn4 = new javax.swing.JPanel();
-        btnKembalikan1 = new javax.swing.JButton();
+        btnOperator = new javax.swing.JButton();
         JLTable1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblUtama1 = new javax.swing.JTable();
@@ -254,13 +254,13 @@ public class CbMenuUtama extends javax.swing.JFrame {
 
         panelBtn4.setBackground(new java.awt.Color(153, 255, 153));
 
-        btnKembalikan1.setBackground(new java.awt.Color(255, 255, 255));
-        btnKembalikan1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnKembalikan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/programasps/images/icon_asps/iloveimg-resized-64/buku (2).png"))); // NOI18N
-        btnKembalikan1.setText("OPERATOR PEMINJAMAN DAN PENGEMBALIAN BUKU");
-        btnKembalikan1.addActionListener(new java.awt.event.ActionListener() {
+        btnOperator.setBackground(new java.awt.Color(255, 255, 255));
+        btnOperator.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnOperator.setIcon(new javax.swing.ImageIcon(getClass().getResource("/programasps/images/icon_asps/iloveimg-resized-64/buku (2).png"))); // NOI18N
+        btnOperator.setText("OPERATOR PEMINJAMAN DAN PENGEMBALIAN BUKU");
+        btnOperator.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnKembalikan1ActionPerformed(evt);
+                btnOperatorActionPerformed(evt);
             }
         });
 
@@ -270,14 +270,14 @@ public class CbMenuUtama extends javax.swing.JFrame {
             panelBtn4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBtn4Layout.createSequentialGroup()
                 .addGap(52, 52, 52)
-                .addComponent(btnKembalikan1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnOperator, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(58, 58, 58))
         );
         panelBtn4Layout.setVerticalGroup(
             panelBtn4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBtn4Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(btnKembalikan1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnOperator, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(13, Short.MAX_VALUE))
         );
 
@@ -453,9 +453,23 @@ public class CbMenuUtama extends javax.swing.JFrame {
         mPB.setVisible(true);
     }//GEN-LAST:event_btnPinjamActionPerformed
 
-    private void btnKembalikan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKembalikan1ActionPerformed
+    private void btnOperatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOperatorActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnKembalikan1ActionPerformed
+        
+        
+        FbPilihUser PU = new FbPilihUser(colorBackground,colorBackgroundForm);
+        //-------------------------------------------------
+        //Toolkit tk=Toolkit.getDefaultToolkit(); 
+        //Dimension screenSize = tk.getScreenSize(); 
+        //MA.setSize(960,screenSize.height);
+        PU.setExtendedState(PU.MAXIMIZED_BOTH);
+        //-------------------------------------------------
+        PU.setDefaultCloseOperation(PU.DISPOSE_ON_CLOSE);
+        PU.getTable();
+        PU.dataIn(DataLogin);
+        PU.setLocationRelativeTo(null);
+        PU.setVisible(true);
+    }//GEN-LAST:event_btnOperatorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -499,17 +513,15 @@ public class CbMenuUtama extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel JLTable;
     private javax.swing.JPanel JLTable1;
     private javax.swing.JButton btnAdmin;
     private javax.swing.JButton btnKembalikan;
-    private javax.swing.JButton btnKembalikan1;
     private javax.swing.JButton btnLogout;
+    private javax.swing.JButton btnOperator;
     private javax.swing.JButton btnPinjam;
     private javax.swing.JButton btnProfile;
     private javax.swing.JLabel jLJudul;
     private javax.swing.JLabel jLJudulSelamatDatang;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel panelBtn1;
     private javax.swing.JPanel panelBtn2;
@@ -517,7 +529,6 @@ public class CbMenuUtama extends javax.swing.JFrame {
     private javax.swing.JPanel panelBtn4;
     private javax.swing.JPanel panelJudul1;
     private javax.swing.JPanel panelLogin;
-    private javax.swing.JTable tblUtama;
     private javax.swing.JTable tblUtama1;
     // End of variables declaration//GEN-END:variables
 }
