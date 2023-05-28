@@ -72,7 +72,9 @@ public class DbMenuPinjamBuku extends javax.swing.JFrame {
             "Judul Buku", 
             "Penulis Buku", 
             "Penerbit Oleh", 
-            "Tahun Buku", 
+            "Tahun Buku",
+            "Kelas",
+            "Status Buku",
             "Sort Id"
             //"Nama petugas input"  //menghilangkan colum nama_petugas_input
         };
@@ -88,8 +90,11 @@ public class DbMenuPinjamBuku extends javax.swing.JFrame {
             "penulis_buku", 
             "penerbit_oleh", 
             "tahun_buku", 
+            "buku_kelas",
+            "status_buku",
             "sort_id",
-            "nama_petugas_input"};
+            "nama_petugas_input"
+        };
         
         koneksiData conn = new koneksiData();
         DataTable = conn.cSelectAll("tbl_buku",listColmn);
@@ -98,16 +103,16 @@ public class DbMenuPinjamBuku extends javax.swing.JFrame {
         model.setDataVector(DataTable, CustomListColmn);
         
         
-        tblPinjam.getColumnModel().getColumn(0).setMinWidth(70);
+        tblPinjam.getColumnModel().getColumn(0).setMinWidth(10);
         tblPinjam.getColumnModel().getColumn(0).setMaxWidth(70);
-        tblPinjam.getColumnModel().getColumn(2).setMinWidth(100);
-        tblPinjam.getColumnModel().getColumn(2).setMaxWidth(100);
-        tblPinjam.getColumnModel().getColumn(3).setMinWidth(100);
-        tblPinjam.getColumnModel().getColumn(3).setMaxWidth(100);
-        tblPinjam.getColumnModel().getColumn(4).setMinWidth(100);
-        tblPinjam.getColumnModel().getColumn(4).setMaxWidth(100);
-        tblPinjam.getColumnModel().getColumn(5).setMinWidth(40);
+        tblPinjam.getColumnModel().getColumn(4).setMinWidth(10);
+        tblPinjam.getColumnModel().getColumn(4).setMaxWidth(60);
+        tblPinjam.getColumnModel().getColumn(5).setMinWidth(10);
         tblPinjam.getColumnModel().getColumn(5).setMaxWidth(40);
+        tblPinjam.getColumnModel().getColumn(6).setMinWidth(10);
+        tblPinjam.getColumnModel().getColumn(6).setMaxWidth(100);
+        tblPinjam.getColumnModel().getColumn(7).setMinWidth(10);
+        tblPinjam.getColumnModel().getColumn(7).setMaxWidth(40);
     }
 
     /**
@@ -394,17 +399,16 @@ public class DbMenuPinjamBuku extends javax.swing.JFrame {
         
         txtSearch.setText("");
         
-        
-        tblPinjam.getColumnModel().getColumn(0).setMinWidth(70);
+        tblPinjam.getColumnModel().getColumn(0).setMinWidth(10);
         tblPinjam.getColumnModel().getColumn(0).setMaxWidth(70);
-        tblPinjam.getColumnModel().getColumn(2).setMinWidth(100);
-        tblPinjam.getColumnModel().getColumn(2).setMaxWidth(100);
-        tblPinjam.getColumnModel().getColumn(3).setMinWidth(100);
-        tblPinjam.getColumnModel().getColumn(3).setMaxWidth(100);
-        tblPinjam.getColumnModel().getColumn(4).setMinWidth(100);
-        tblPinjam.getColumnModel().getColumn(4).setMaxWidth(100);
-        tblPinjam.getColumnModel().getColumn(5).setMinWidth(40);
+        tblPinjam.getColumnModel().getColumn(4).setMinWidth(10);
+        tblPinjam.getColumnModel().getColumn(4).setMaxWidth(60);
+        tblPinjam.getColumnModel().getColumn(5).setMinWidth(10);
         tblPinjam.getColumnModel().getColumn(5).setMaxWidth(40);
+        tblPinjam.getColumnModel().getColumn(6).setMinWidth(10);
+        tblPinjam.getColumnModel().getColumn(6).setMaxWidth(100);
+        tblPinjam.getColumnModel().getColumn(7).setMinWidth(10);
+        tblPinjam.getColumnModel().getColumn(7).setMaxWidth(40);
     }//GEN-LAST:event_btnPinjamBukuActionPerformed
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
@@ -455,16 +459,16 @@ public class DbMenuPinjamBuku extends javax.swing.JFrame {
             model.setDataVector(dataKosong, CustomListColmn);
         }
         
-        tblPinjam.getColumnModel().getColumn(0).setMinWidth(70);
+        tblPinjam.getColumnModel().getColumn(0).setMinWidth(10);
         tblPinjam.getColumnModel().getColumn(0).setMaxWidth(70);
-        tblPinjam.getColumnModel().getColumn(2).setMinWidth(100);
-        tblPinjam.getColumnModel().getColumn(2).setMaxWidth(100);
-        tblPinjam.getColumnModel().getColumn(3).setMinWidth(100);
-        tblPinjam.getColumnModel().getColumn(3).setMaxWidth(100);
-        tblPinjam.getColumnModel().getColumn(4).setMinWidth(100);
-        tblPinjam.getColumnModel().getColumn(4).setMaxWidth(100);
-        tblPinjam.getColumnModel().getColumn(5).setMinWidth(40);
+        tblPinjam.getColumnModel().getColumn(4).setMinWidth(10);
+        tblPinjam.getColumnModel().getColumn(4).setMaxWidth(60);
+        tblPinjam.getColumnModel().getColumn(5).setMinWidth(10);
         tblPinjam.getColumnModel().getColumn(5).setMaxWidth(40);
+        tblPinjam.getColumnModel().getColumn(6).setMinWidth(10);
+        tblPinjam.getColumnModel().getColumn(6).setMaxWidth(100);
+        tblPinjam.getColumnModel().getColumn(7).setMinWidth(10);
+        tblPinjam.getColumnModel().getColumn(7).setMaxWidth(40);
     }//GEN-LAST:event_txtSearchKeyReleased
 
     private void btnCancleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancleActionPerformed

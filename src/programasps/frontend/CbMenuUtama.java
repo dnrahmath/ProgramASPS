@@ -12,6 +12,7 @@ import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTextField;
+import static programasps.frontend.DcMenuKembalikanBuku.hitungDendaString;
 
 /**
  *
@@ -87,7 +88,8 @@ public class CbMenuUtama extends javax.swing.JFrame {
             "status buku", 
             "tgl peminjaman", 
             "tgl pengembalian", 
-            "id user peminjam"
+            "id user peminjam",
+            "denda"
         };
         for (int i = 0; i < CustomListColmn.length; i++) {
             JComboBox1.addItem(CustomListColmn[i]);
@@ -102,11 +104,28 @@ public class CbMenuUtama extends javax.swing.JFrame {
             "status_buku", 
             "tgl_peminjaman", 
             "tgl_pengembalian", 
-            "id_user_peminjam"
+            "id_user_peminjam",
+            "denda"
         };
         
         koneksiData conn = new koneksiData();
-        DataTable = koneksiData.cSelectOneDef("tbl_pinjam",listColmn,100,"id_user_peminjam",DataLogin[0][0]);
+        DataTable = koneksiData.cSelectOneDef("tbl_pinjam",listColmn,1000,"id_user_peminjam",DataLogin[0][0]);
+        
+        //-------------------------------------------------------------------------------
+        for (int i = 0; i < DataTable.length ; i++) {
+            if(DataTable[i][4] != null){
+                String thn1 = DataTable[i][4].substring(0,4);
+                String bln1 = DataTable[i][4].substring(5,7);
+                String hri1 = DataTable[i][4].substring(8,10);
+                int intThn1 = Integer.parseInt(thn1);
+                int intBln1 = Integer.parseInt(bln1);
+                int intHri1 = Integer.parseInt(hri1);
+                String nominalDendaRp = hitungDendaString(intThn1,intBln1,intHri1);
+                DataTable[i][7] = nominalDendaRp;
+            }
+        }
+        //-------------------------------------------------------------------------------
+        
         
         DefaultTableModel model = (DefaultTableModel)tblUtama1.getModel();
         model.setDataVector(DataTable, CustomListColmn);
@@ -125,6 +144,8 @@ public class CbMenuUtama extends javax.swing.JFrame {
         tblUtama1.getColumnModel().getColumn(5).setMaxWidth(140);
         tblUtama1.getColumnModel().getColumn(6).setMinWidth(70);
         tblUtama1.getColumnModel().getColumn(6).setMaxWidth(70);
+        tblUtama1.getColumnModel().getColumn(7).setMinWidth(10);
+        tblUtama1.getColumnModel().getColumn(7).setMaxWidth(60);
     
     }
 
@@ -600,7 +621,8 @@ public class CbMenuUtama extends javax.swing.JFrame {
             "status buku",
             "tgl peminjaman",
             "tgl pengembalian",
-            "id user peminjam"
+            "id user peminjam",
+            "denda"
         };
         //-------------------------------------------
 
@@ -611,7 +633,8 @@ public class CbMenuUtama extends javax.swing.JFrame {
             "status_buku",
             "tgl_peminjaman",
             "tgl_pengembalian",
-            "id_user_peminjam"
+            "id_user_peminjam",
+            "denda"
         };
 
         JTextField txtSearchF = (JTextField) evt.getSource();
@@ -622,8 +645,22 @@ public class CbMenuUtama extends javax.swing.JFrame {
 
         String search = txtSearchF.getText();
 
-        DataTable = koneksiData.cSelectOneDef("tbl_pinjam",listColmn,100,option,search);
+        DataTable = koneksiData.cSelectOneDef("tbl_pinjam",listColmn,1000,option,search);
+        //-------------------------------------------------------------------------------
+        for (int i = 0; i < DataTable.length; i++) {
+            String thn1 = DataTable[i][4].substring(0,4);
+            String bln1 = DataTable[i][4].substring(5,7);
+            String hri1 = DataTable[i][4].substring(8,10);
+            int intThn1 = Integer.parseInt(thn1);
+            int intBln1 = Integer.parseInt(bln1);
+            int intHri1 = Integer.parseInt(hri1);
+            String nominalDendaRp = hitungDendaString(intThn1,intBln1,intHri1);
+            DataTable[i][7] = nominalDendaRp;
+        }
+        //-------------------------------------------------------------------------------
         DefaultTableModel model = (DefaultTableModel)tblUtama1.getModel();
+        
+        
 
         String dataKosong[][]= {{}};
         if(!"".equals(txtSearchF.getText())){
@@ -650,6 +687,8 @@ public class CbMenuUtama extends javax.swing.JFrame {
         tblUtama1.getColumnModel().getColumn(5).setMaxWidth(140);
         tblUtama1.getColumnModel().getColumn(6).setMinWidth(70);
         tblUtama1.getColumnModel().getColumn(6).setMaxWidth(70);
+        tblUtama1.getColumnModel().getColumn(7).setMinWidth(10);
+        tblUtama1.getColumnModel().getColumn(7).setMaxWidth(60);
 
     }//GEN-LAST:event_txtSearchKeyReleased
 

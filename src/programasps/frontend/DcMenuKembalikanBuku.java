@@ -74,7 +74,8 @@ public class DcMenuKembalikanBuku extends javax.swing.JFrame {
             "status buku", 
             "tgl peminjaman", 
             "tgl pengembalian", 
-            "id user peminjam"
+            "id user peminjam",
+            "denda"
         };
         for (int i = 0; i < CustomListColmn.length; i++) {
             JComboBox1.addItem(CustomListColmn[i]);
@@ -89,7 +90,8 @@ public class DcMenuKembalikanBuku extends javax.swing.JFrame {
             "status_buku", 
             "tgl_peminjaman", 
             "tgl_pengembalian", 
-            "id_user_peminjam"
+            "id_user_peminjam",
+            "denda"
         };
         
         koneksiData conn = new koneksiData();
@@ -112,7 +114,48 @@ public class DcMenuKembalikanBuku extends javax.swing.JFrame {
         tblPinjam.getColumnModel().getColumn(5).setMaxWidth(140);
         tblPinjam.getColumnModel().getColumn(6).setMinWidth(70);
         tblPinjam.getColumnModel().getColumn(6).setMaxWidth(70);
+        tblPinjam.getColumnModel().getColumn(7).setMinWidth(10);
+        tblPinjam.getColumnModel().getColumn(7).setMaxWidth(60);
     
+    }
+    
+    public static String hitungDendaString(int intThn1Pinjam,int intBln1Pinjam, int intHri1Pinjam){
+        //----------------------------------------------------------------
+        LocalDate tglPinjam = LocalDate.of(intThn1Pinjam, intBln1Pinjam, intHri1Pinjam);
+        LocalDate tglKembali = LocalDate.now();
+        Period rentang = Period.between(tglPinjam, tglKembali);
+        int rentangHri = rentang.getDays();
+        int rentangBln = rentang.getMonths()*30;
+        int rentangThn = (rentang.getYears()*12)*30;
+          
+        int tidakDenda = 1;
+        int nominalDenda = 0;
+          
+        int jmlhTelatHri = 0;
+        int totalHri = rentangHri+rentangBln+rentangThn;  //waktu lama dipinjam dalam hari
+        System.out.println("jumlah rentang hari : "+totalHri);
+        if(totalHri > 7){ //jika lehih dari 7 hari
+            tidakDenda = 0; //disetting kenaDenda
+            jmlhTelatHri = totalHri - 7;
+            nominalDenda = 500*jmlhTelatHri;  //kena denda 500/hari semenjak telat
+        }else{
+            tidakDenda = 1; //disetting tidak kenaDenda
+            nominalDenda = 0;
+        }
+            
+        DecimalFormat DF = new DecimalFormat("#,###,###,###");
+        String nominalDendaRp = DF.format(nominalDenda);
+        
+        
+        /*
+        System.out.println("jumlah hari : "+rentangHri);
+        System.out.println("jumlah bulan : "+rentangBln);
+        System.out.println("jumlah tahun : "+rentangThn);
+          
+        System.out.println("jumlah telat hari : "+jmlhTelatHri);
+        System.out.println("nominal Denda : "+nominalDendaRp);
+        */
+        return nominalDendaRp;
     }
 
     /**
@@ -358,7 +401,8 @@ public class DcMenuKembalikanBuku extends javax.swing.JFrame {
             "status_buku", 
             "tgl_peminjaman", 
             "tgl_pengembalian", 
-            "id_user_peminjam"
+            "id_user_peminjam",
+            "denda"
         };
         
         
@@ -373,50 +417,18 @@ public class DcMenuKembalikanBuku extends javax.swing.JFrame {
                                      "0",
                                     };
             
-            
+            //-------------------------------------------------------------------------------
             String thn1 = listColmnRow[4].substring(0,4);
             String bln1 = listColmnRow[4].substring(5,7);
             String hri1 = listColmnRow[4].substring(8,10);
             int intThn1 = Integer.parseInt(thn1);
             int intBln1 = Integer.parseInt(bln1);
             int intHri1 = Integer.parseInt(hri1);
-        
-            LocalDate tglPinjam = LocalDate.of(intThn1, intBln1, intHri1);
-            LocalDate tglKembali = LocalDate.now();
-            Period rentang = Period.between(tglPinjam, tglKembali);
-            int rentangHri = rentang.getDays();
-            int rentangBln = rentang.getMonths()*30;
-            int rentangThn = (rentang.getYears()*12)*30;
-            
-            int tidakDenda = 1;
-            int nominalDenda = 0;
-            
-            int jmlhTelatHri = 0;
-            int totalHri = rentangHri+rentangBln+rentangThn;  //waktu lama dipinjam dalam hari
-            System.out.println("jumlah rentang hari : "+totalHri);
-            if(totalHri > 7){ //jika lehih dari 7 hari
-                tidakDenda = 0; //disetting kenaDenda
-                jmlhTelatHri = totalHri - 7;
-                nominalDenda = 500*jmlhTelatHri;  //kena denda 500/hari semenjak telat
-            }else{
-                tidakDenda = 1; //disetting tidak kenaDenda
-                nominalDenda = 0;
-            }
-            
-            DecimalFormat DF = new DecimalFormat("#,###,###,###");
-            String nominalDendaRp = DF.format(nominalDenda);
-            
-            /*
-            System.out.println("jumlah hari : "+rentangHri);
-            System.out.println("jumlah bulan : "+rentangBln);
-            System.out.println("jumlah tahun : "+rentangThn);
-            
-            System.out.println("jumlah telat hari : "+jmlhTelatHri);
-            System.out.println("nominal Denda : "+nominalDendaRp);
-            */
+            String nominalDendaRp = hitungDendaString(intThn1,intBln1,intHri1);
+            //-------------------------------------------------------------------------------
             
             koneksiData conn = new koneksiData();
-            if(tidakDenda == 1){ 
+            if(nominalDendaRp.equals(0)){ 
                 conn.cUpdate("tbl_pinjam",listColmn,listColmnRow,listColmn[0],listColmnRow[0]);
                 JOptionPane.showMessageDialog(
                         null,
@@ -514,7 +526,21 @@ public class DcMenuKembalikanBuku extends javax.swing.JFrame {
         String search = txtSearchF.getText();
         
         
-        DataTable = koneksiData.cSelectOneDef("tbl_pinjam",listColmn,100,option,search);
+        DataTable = koneksiData.cSelectOneDef("tbl_pinjam",listColmn,1000,option,search);
+        //-------------------------------------------------------------------------------
+        for (int i = 0; i < DataTable.length ; i++) {
+            if(DataTable[i][4] != null){
+                String thn1 = DataTable[i][4].substring(0,4);
+                String bln1 = DataTable[i][4].substring(5,7);
+                String hri1 = DataTable[i][4].substring(8,10);
+                int intThn1 = Integer.parseInt(thn1);
+                int intBln1 = Integer.parseInt(bln1);
+                int intHri1 = Integer.parseInt(hri1);
+                String nominalDendaRp = hitungDendaString(intThn1,intBln1,intHri1);
+                DataTable[i][7] = nominalDendaRp;
+            }
+        }
+        //-------------------------------------------------------------------------------
         DefaultTableModel model = (DefaultTableModel)tblPinjam.getModel();
         
         

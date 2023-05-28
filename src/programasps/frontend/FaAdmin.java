@@ -43,6 +43,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JRResultSetDataSource;
 import programasps.backend.koneksiData;
+import static programasps.frontend.DcMenuKembalikanBuku.hitungDendaString;
 //import sun.util.logging.PlatformLogger;
 
 /**
@@ -125,16 +126,18 @@ public class FaAdmin extends javax.swing.JFrame {
             listColmn[9] = "agama";
             listColmn[10] = "alamat";
         }else if("tbl_buku".equals(ModeData)){ 
-            listColmn = new String[7];
-            listColmn[0] = "id_buku";
-            listColmn[1] = "judul_buku";
-            listColmn[2] = "penulis_buku";
-            listColmn[3] = "penerbit_oleh";
-            listColmn[4] = "tahun_buku";
-            listColmn[5] = "nama_petugas_input"; 
-            listColmn[6] = "sort_id"; 
+            listColmn = new String[9];
+            listColmn[0] = "Id";
+            listColmn[1] = "Judul Buku";
+            listColmn[2] = "Penulis Buku";
+            listColmn[3] = "Penerbit Oleh";
+            listColmn[4] = "Tahun Buku";
+            listColmn[5] = "Kelas";
+            listColmn[6] = "Status Buku";
+            listColmn[7] = "Nama Petugas Input";
+            listColmn[8] = "Sort Id";
         }else if("tbl_pinjam".equals(ModeData)){ 
-            listColmn = new String[7];
+            listColmn = new String[8];
             listColmn[0] = "id_pinjam";
             listColmn[1] = "id_buku";
             listColmn[2] = "judul_buku";
@@ -142,6 +145,7 @@ public class FaAdmin extends javax.swing.JFrame {
             listColmn[4] = "tgl_peminjaman";
             listColmn[5] = "tgl_pengembalian";
             listColmn[6] = "id_user_peminjam"; 
+            listColmn[7] = "denda"; 
         }else if("tbl_kotakSaran".equals(ModeData)){
             listColmn = new String[4];
             listColmn[0] = "id";
@@ -169,16 +173,16 @@ public class FaAdmin extends javax.swing.JFrame {
         }else if("tbl_buku".equals(ModeData)){ 
             tblUtama.getColumnModel().getColumn(0).setMinWidth(10);
             tblUtama.getColumnModel().getColumn(0).setMaxWidth(70);
-            tblUtama.getColumnModel().getColumn(2).setMinWidth(10);
-            tblUtama.getColumnModel().getColumn(2).setMaxWidth(100);
-            tblUtama.getColumnModel().getColumn(3).setMinWidth(10);
-            tblUtama.getColumnModel().getColumn(3).setMaxWidth(100);
             tblUtama.getColumnModel().getColumn(4).setMinWidth(10);
-            tblUtama.getColumnModel().getColumn(4).setMaxWidth(100);
+            tblUtama.getColumnModel().getColumn(4).setMaxWidth(40);
             tblUtama.getColumnModel().getColumn(5).setMinWidth(10);
-            tblUtama.getColumnModel().getColumn(5).setMaxWidth(140);
+            tblUtama.getColumnModel().getColumn(5).setMaxWidth(40);
             tblUtama.getColumnModel().getColumn(6).setMinWidth(10);
-            tblUtama.getColumnModel().getColumn(6).setMaxWidth(40);
+            tblUtama.getColumnModel().getColumn(6).setMaxWidth(100);
+            tblUtama.getColumnModel().getColumn(7).setMinWidth(10);
+            tblUtama.getColumnModel().getColumn(7).setMaxWidth(40);
+            tblUtama.getColumnModel().getColumn(8).setMinWidth(10);
+            tblUtama.getColumnModel().getColumn(8).setMaxWidth(40);
         }else if("tbl_pinjam".equals(ModeData)){  
             tblUtama.getColumnModel().getColumn(0).setMinWidth(10);
             tblUtama.getColumnModel().getColumn(0).setMaxWidth(70);
@@ -192,6 +196,8 @@ public class FaAdmin extends javax.swing.JFrame {
             tblUtama.getColumnModel().getColumn(5).setMaxWidth(140);
             tblUtama.getColumnModel().getColumn(6).setMinWidth(10);
             tblUtama.getColumnModel().getColumn(6).setMaxWidth(40);
+            tblUtama.getColumnModel().getColumn(7).setMinWidth(10);
+            tblUtama.getColumnModel().getColumn(7).setMaxWidth(60);
         }else if("tbl_kotakSaran".equals(ModeData)){
             tblUtama.getColumnModel().getColumn(0).setMinWidth(10);
             tblUtama.getColumnModel().getColumn(0).setMaxWidth(30);
@@ -323,14 +329,16 @@ public class FaAdmin extends javax.swing.JFrame {
         btnUpdate.setText("UPDATE");
         btnUpdate.setVisible(true);
         //ComboBox Pilihan  -------
-        CustomListColmn = new String[7];
+        CustomListColmn = new String[9];
         CustomListColmn[0] = "Id";
         CustomListColmn[1] = "Judul Buku";
         CustomListColmn[2] = "Penulis Buku";
         CustomListColmn[3] = "Penerbit Oleh";
         CustomListColmn[4] = "Tahun Buku";
-        CustomListColmn[5] = "Nama petugas input"; //tidak menghilangkan colum nama_petugas_input
-        CustomListColmn[6] = "Sort Id";
+        CustomListColmn[5] = "Kelas";
+        CustomListColmn[6] = "Status Buku";
+        CustomListColmn[7] = "Nama Petugas Input";
+        CustomListColmn[8] = "Sort Id";
            
         JComboBox1.removeAllItems();
         for (int i = 0; i < CustomListColmn.length; i++) {
@@ -340,14 +348,17 @@ public class FaAdmin extends javax.swing.JFrame {
         
         
         //Table get----------------
-        listColmn = new String[7];
+        listColmn = new String[9];
         listColmn[0] = "id_buku";
         listColmn[1] = "judul_buku";
         listColmn[2] = "penulis_buku";
         listColmn[3] = "penerbit_oleh";
         listColmn[4] = "tahun_buku";
-        listColmn[5] = "nama_petugas_input";
-        listColmn[6] = "sort_id";
+        listColmn[5] = "buku_kelas";
+        listColmn[6] = "status_buku";
+        listColmn[7] = "nama_petugas_input";
+        listColmn[8] = "sort_id";
+        
         
         
         koneksiData conn = new koneksiData();
@@ -368,7 +379,7 @@ public class FaAdmin extends javax.swing.JFrame {
         btnInsert.setText("OPERATOR PEMINJAMAN DAN PENGEMBALIAN BUKU");
         btnUpdate.setVisible(false);
         //ComboBox Pilihan  -------
-        CustomListColmn = new String[7];
+        CustomListColmn = new String[8];
         CustomListColmn[0] = "Id Pinjam";
         CustomListColmn[1] = "Id Buku";
         CustomListColmn[2] = "Judul Buku";
@@ -376,6 +387,7 @@ public class FaAdmin extends javax.swing.JFrame {
         CustomListColmn[4] = "Tgl Peminjaman";
         CustomListColmn[5] = "Tgl Pengembalian";
         CustomListColmn[6] = "Usr";
+        CustomListColmn[7] = "Denda";
            
         JComboBox1.removeAllItems();
         for (int i = 0; i < CustomListColmn.length; i++) {
@@ -386,7 +398,7 @@ public class FaAdmin extends javax.swing.JFrame {
             
         
         //Table get----------------
-        listColmn = new String[7];
+        listColmn = new String[8];
         listColmn[0] = "id_pinjam";
         listColmn[1] = "id_buku";
         listColmn[2] = "judul_buku";
@@ -394,10 +406,25 @@ public class FaAdmin extends javax.swing.JFrame {
         listColmn[4] = "tgl_peminjaman";
         listColmn[5] = "tgl_pengembalian";
         listColmn[6] = "id_user_peminjam";
+        listColmn[7] = "denda";
         
         
         koneksiData conn = new koneksiData();
         DataTable = conn.cSelectAll("tbl_pinjam",listColmn);
+        //-------------------------------------------------------------------------------
+        for (int i = 0; i < DataTable.length ; i++) {
+            if(DataTable[i][4] != null){
+                String thn1 = DataTable[i][4].substring(0,4);
+                String bln1 = DataTable[i][4].substring(5,7);
+                String hri1 = DataTable[i][4].substring(8,10);
+                int intThn1 = Integer.parseInt(thn1);
+                int intBln1 = Integer.parseInt(bln1);
+                int intHri1 = Integer.parseInt(hri1);
+                String nominalDendaRp = hitungDendaString(intThn1,intBln1,intHri1);
+                DataTable[i][7] = nominalDendaRp;
+            }
+        }
+        //-------------------------------------------------------------------------------
         
         DefaultTableModel model = (DefaultTableModel)tblUtama.getModel();
         model.setDataVector(DataTable, CustomListColmn);

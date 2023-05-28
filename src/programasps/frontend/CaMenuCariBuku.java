@@ -49,7 +49,9 @@ public class CaMenuCariBuku extends javax.swing.JFrame {
             "Judul Buku", 
             "Penulis Buku", 
             "Penerbit Oleh", 
-            "Tahun Buku", 
+            "Tahun Buku",
+            "Kelas",
+            "Status Buku",
             "Sort Id"
             //"Nama petugas input"  //menghilangkan colum nama_petugas_input
         };
@@ -65,6 +67,8 @@ public class CaMenuCariBuku extends javax.swing.JFrame {
             "penulis_buku", 
             "penerbit_oleh", 
             "tahun_buku", 
+            "buku_kelas",
+            "status_buku",
             "sort_id",
             "nama_petugas_input"
         };
@@ -76,8 +80,12 @@ public class CaMenuCariBuku extends javax.swing.JFrame {
         model.setDataVector(DataTable, CustomListColmn);
         tblPinjam.getColumnModel().getColumn(0).setMinWidth(10);
         tblPinjam.getColumnModel().getColumn(0).setMaxWidth(70);
+        tblPinjam.getColumnModel().getColumn(4).setMinWidth(10);
+        tblPinjam.getColumnModel().getColumn(4).setMaxWidth(60);
         tblPinjam.getColumnModel().getColumn(5).setMinWidth(10);
         tblPinjam.getColumnModel().getColumn(5).setMaxWidth(40);
+        tblPinjam.getColumnModel().getColumn(7).setMinWidth(10);
+        tblPinjam.getColumnModel().getColumn(7).setMaxWidth(40);
         
     }
 
@@ -274,7 +282,9 @@ public class CaMenuCariBuku extends javax.swing.JFrame {
             "Judul Buku", 
             "Penulis Buku", 
             "Penerbit Oleh", 
-            "Tahun Buku", 
+            "Tahun Buku",
+            "Kelas",
+            "Status Buku",
             "Sort Id"
             //"Nama petugas input"  //menghilangkan colum nama_petugas_input
         };
@@ -286,6 +296,8 @@ public class CaMenuCariBuku extends javax.swing.JFrame {
             "penulis_buku", 
             "penerbit_oleh", 
             "tahun_buku", 
+            "buku_kelas",
+            "status_buku",
             "sort_id",
             "nama_petugas_input"
         };
@@ -300,7 +312,7 @@ public class CaMenuCariBuku extends javax.swing.JFrame {
         String search = txtSearchF.getText();
         
         
-        DataTable = koneksiData.cSelectOne("tbl_buku",listColmn,100,option,search);
+        DataTable = koneksiData.cSelectOneDef("tbl_buku",listColmn,1000,option,search);
         DefaultTableModel model = (DefaultTableModel)tblPinjam.getModel();
         
         
@@ -316,8 +328,12 @@ public class CaMenuCariBuku extends javax.swing.JFrame {
         }
         tblPinjam.getColumnModel().getColumn(0).setMinWidth(10);
         tblPinjam.getColumnModel().getColumn(0).setMaxWidth(70);
+        tblPinjam.getColumnModel().getColumn(4).setMinWidth(10);
+        tblPinjam.getColumnModel().getColumn(4).setMaxWidth(60);
         tblPinjam.getColumnModel().getColumn(5).setMinWidth(10);
         tblPinjam.getColumnModel().getColumn(5).setMaxWidth(40);
+        tblPinjam.getColumnModel().getColumn(7).setMinWidth(10);
+        tblPinjam.getColumnModel().getColumn(7).setMaxWidth(40);
         
         
     }//GEN-LAST:event_txtSearchKeyReleased
