@@ -186,6 +186,7 @@ public class AaLoginRegisterPanel extends javax.swing.JFrame {
                 //-------------------------------------------------
                 mUtm.setDefaultCloseOperation(mUtm.DISPOSE_ON_CLOSE);
                 mUtm.dataIn(DataLogin);
+                mUtm.getTable();
                 mUtm.setValue();
                 mUtm.setLocationRelativeTo(null);
            

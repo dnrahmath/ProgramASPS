@@ -426,32 +426,35 @@ public class FbPilihUser extends javax.swing.JFrame {
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
         // TODO add your handling code here:
-        CustomListColmn = new String[11];
-        CustomListColmn[0] = "Id";
-        CustomListColmn[1] = "Nama";
-        CustomListColmn[2] = "Email";
-        CustomListColmn[3] = "Password";
-        CustomListColmn[4] = "No KTP/Kartu Pelajar";
-        CustomListColmn[5] = "Peran";
-        CustomListColmn[6] = "Terakhir Login";
-        CustomListColmn[7] = "Jenis Kelamin";
-        CustomListColmn[8] = "No Tlp";
-        CustomListColmn[9] = "Agama";
-        CustomListColmn[10] = "Alamat";
+        String CustomListColmn[]= { 
+            "Id", 
+            "Nama", 
+            "Email", 
+            "Password", 
+            "No KTP/Kartu Pelajar", 
+            "Peran", 
+            "Terakhir Login",
+            "Jenis Kelamin",
+            "No Tlp",
+            "Agama",
+            "Alamat"
+        };
         //-------------------------------------------
         
-        listColmn = new String[11];
-        listColmn[0] = "id";
-        listColmn[1] = "nama";
-        listColmn[2] = "email";
-        listColmn[3] = "password";
-        listColmn[4] = "noid";
-        listColmn[5] = "peran";
-        listColmn[6] = "terakhir_login";
-        listColmn[7] = "jenis_kelamin";
-        listColmn[8] = "no_tlp";
-        listColmn[9] = "agama";
-        listColmn[10] = "alamat";
+        
+        String listColmn[]= { 
+            "id", 
+            "nama", 
+            "email", 
+            "password", 
+            "noid", 
+            "peran", 
+            "terakhir_login",
+            "jenis_kelamin",
+            "no_tlp",
+            "agama",
+            "alamat"
+        };
         
         JTextField txtSearchF = (JTextField) evt.getSource();
         

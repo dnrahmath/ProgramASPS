@@ -121,6 +121,7 @@ public class DaMenuProfile extends javax.swing.JFrame {
             CbMenuUtama mUtm = new CbMenuUtama(colorBackground,colorBackgroundForm);
             mUtm.setDefaultCloseOperation(mUtm.DISPOSE_ON_CLOSE);
             mUtm.dataIn(DataLogin);
+            mUtm.getTable();
             mUtm.setValue();
             mUtm.setLocationRelativeTo(null);
             mUtm.setVisible(true);
@@ -651,6 +652,7 @@ public class DaMenuProfile extends javax.swing.JFrame {
         CbMenuUtama mUtm = new CbMenuUtama(colorBackground,colorBackgroundForm);
         mUtm.setDefaultCloseOperation(mUtm.DISPOSE_ON_CLOSE);
         mUtm.dataIn(DataLogin);
+        mUtm.getTable();
         mUtm.setValue();
         mUtm.setLocationRelativeTo(null);
         mUtm.setVisible(true);

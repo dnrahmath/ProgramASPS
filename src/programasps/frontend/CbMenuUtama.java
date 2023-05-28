@@ -10,6 +10,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JTextField;
 
 /**
  *
@@ -26,6 +28,7 @@ public class CbMenuUtama extends javax.swing.JFrame {
     Color colorBackgroundForm;
     
     String[][] DataLogin;
+    String[][] DataTable;
     
     public CbMenuUtama(Color colorRGBA,Color colorRGBAForm) {
         initComponents();
@@ -40,12 +43,11 @@ public class CbMenuUtama extends javax.swing.JFrame {
         panelBtn3.setBackground(colorBackgroundForm);
         panelBtn4.setBackground(colorBackgroundForm);
         JLTable1.setBackground(colorBackgroundForm);
+        panelIsi1.setBackground(colorBackgroundForm);
         //[panelBelakang]
         panelLogin.setBackground(colorBackground);
         
-        
         panelBtn2.setVisible(false);
-        
         
         //-------------------------------------
         //panelBtn2.setSize(680,440);
@@ -68,11 +70,62 @@ public class CbMenuUtama extends javax.swing.JFrame {
             btnAdmin.setVisible(true);
             panelBtn4.setVisible(true);
             JLTable1.setVisible(false);
+            panelIsi1.setVisible(false);
         }else{
             btnAdmin.setVisible(false);
             panelBtn4.setVisible(false);
             JLTable1.setVisible(true);
+            panelIsi1.setVisible(true);
         }
+    }
+    public void getTable(){
+        //ComboBox Pilihan  -------
+        String CustomListColmn[]= { 
+            "id pinjam", 
+            "id buku", 
+            "judul buku", 
+            "status buku", 
+            "tgl peminjaman", 
+            "tgl pengembalian", 
+            "id user peminjam"
+        };
+        for (int i = 0; i < CustomListColmn.length; i++) {
+            JComboBox1.addItem(CustomListColmn[i]);
+        }
+        //-------------------------
+        
+        
+        String listColmn[]= { 
+            "id_pinjam", 
+            "id_buku", 
+            "judul_buku", 
+            "status_buku", 
+            "tgl_peminjaman", 
+            "tgl_pengembalian", 
+            "id_user_peminjam"
+        };
+        
+        koneksiData conn = new koneksiData();
+        DataTable = koneksiData.cSelectOneDef("tbl_pinjam",listColmn,100,"id_user_peminjam",DataLogin[0][0]);
+        
+        DefaultTableModel model = (DefaultTableModel)tblUtama1.getModel();
+        model.setDataVector(DataTable, CustomListColmn);
+        
+        
+        tblUtama1.getColumnModel().getColumn(0).setMinWidth(70);
+        tblUtama1.getColumnModel().getColumn(0).setMaxWidth(70);
+        tblUtama1.getColumnModel().getColumn(1).setMinWidth(70);
+        tblUtama1.getColumnModel().getColumn(1).setMaxWidth(70);
+        tblUtama1.getColumnModel().getColumn(2).getPreferredWidth();
+        tblUtama1.getColumnModel().getColumn(3).setMinWidth(100);
+        tblUtama1.getColumnModel().getColumn(3).setMaxWidth(100);
+        tblUtama1.getColumnModel().getColumn(4).setMinWidth(140);
+        tblUtama1.getColumnModel().getColumn(4).setMaxWidth(140);
+        tblUtama1.getColumnModel().getColumn(5).setMinWidth(140);
+        tblUtama1.getColumnModel().getColumn(5).setMaxWidth(140);
+        tblUtama1.getColumnModel().getColumn(6).setMinWidth(70);
+        tblUtama1.getColumnModel().getColumn(6).setMaxWidth(70);
+    
     }
 
     /**
@@ -101,6 +154,13 @@ public class CbMenuUtama extends javax.swing.JFrame {
         JLTable1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblUtama1 = new javax.swing.JTable();
+        panelIsi1 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        txtSearch = new javax.swing.JTextField();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        JComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -120,12 +180,12 @@ public class CbMenuUtama extends javax.swing.JFrame {
             panelJudul1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelJudul1Layout.createSequentialGroup()
                 .addGap(54, 54, 54)
-                .addComponent(jLJudulSelamatDatang, javax.swing.GroupLayout.DEFAULT_SIZE, 906, Short.MAX_VALUE)
+                .addComponent(jLJudulSelamatDatang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(53, 53, 53))
             .addGroup(panelJudul1Layout.createSequentialGroup()
-                .addGap(332, 332, 332)
-                .addComponent(jLJudul)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(377, 377, 377)
+                .addComponent(jLJudul, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
+                .addGap(367, 367, 367))
         );
         panelJudul1Layout.setVerticalGroup(
             panelJudul1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,9 +225,9 @@ public class CbMenuUtama extends javax.swing.JFrame {
             panelBtn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBtn2Layout.createSequentialGroup()
                 .addGap(54, 54, 54)
-                .addComponent(btnPinjam, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnKembalikan, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnPinjam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(439, 439, 439)
+                .addComponent(btnKembalikan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(56, 56, 56))
         );
         panelBtn2Layout.setVerticalGroup(
@@ -197,9 +257,9 @@ public class CbMenuUtama extends javax.swing.JFrame {
         panelBtn1Layout.setHorizontalGroup(
             panelBtn1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBtn1Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(btnProfile, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(56, 56, 56))
+                .addGap(54, 54, 54)
+                .addComponent(btnProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 996, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelBtn1Layout.setVerticalGroup(
             panelBtn1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,11 +296,11 @@ public class CbMenuUtama extends javax.swing.JFrame {
         panelBtn3Layout.setHorizontalGroup(
             panelBtn3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBtn3Layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(btnAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
+                .addGap(57, 57, 57)
+                .addComponent(btnAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(323, 323, 323)
+                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         panelBtn3Layout.setVerticalGroup(
             panelBtn3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,9 +329,9 @@ public class CbMenuUtama extends javax.swing.JFrame {
         panelBtn4Layout.setHorizontalGroup(
             panelBtn4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBtn4Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(btnOperator, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(58, 58, 58))
+                .addGap(55, 55, 55)
+                .addComponent(btnOperator, javax.swing.GroupLayout.PREFERRED_SIZE, 995, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelBtn4Layout.setVerticalGroup(
             panelBtn4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,14 +363,72 @@ public class CbMenuUtama extends javax.swing.JFrame {
             .addGroup(JLTable1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jScrollPane2)
-                .addGap(26, 26, 26))
+                .addGap(25, 25, 25))
         );
         JLTable1Layout.setVerticalGroup(
             JLTable1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, JLTable1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
                 .addContainerGap())
+        );
+
+        panelIsi1.setBackground(new java.awt.Color(153, 255, 153));
+
+        jLabel15.setFont(new java.awt.Font("Liberation Sans", 0, 15)); // NOI18N
+        jLabel15.setText("Cari");
+
+        jLabel16.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        jLabel16.setText(" :");
+
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
+
+        jLabel24.setFont(new java.awt.Font("Liberation Sans", 0, 15)); // NOI18N
+        jLabel24.setText("Berdasarkan");
+
+        jLabel25.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        jLabel25.setText(" :");
+
+        javax.swing.GroupLayout panelIsi1Layout = new javax.swing.GroupLayout(panelIsi1);
+        panelIsi1.setLayout(panelIsi1Layout);
+        panelIsi1Layout.setHorizontalGroup(
+            panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelIsi1Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(jLabel24)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel25)
+                .addGap(18, 18, 18)
+                .addComponent(JComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
+        );
+        panelIsi1Layout.setVerticalGroup(
+            panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelIsi1Layout.createSequentialGroup()
+                .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelIsi1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(JComboBox1)
+                        .addGap(6, 6, 6))
+                    .addGroup(panelIsi1Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(11, 11, 11))
         );
 
         javax.swing.GroupLayout panelLoginLayout = new javax.swing.GroupLayout(panelLogin);
@@ -318,15 +436,17 @@ public class CbMenuUtama extends javax.swing.JFrame {
         panelLoginLayout.setHorizontalGroup(
             panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLoginLayout.createSequentialGroup()
-                .addGap(205, 205, 205)
-                .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelJudul1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelBtn2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(157, 157, 157)
+                .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelBtn3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelBtn4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JLTable1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(323, Short.MAX_VALUE))
+                    .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(JLTable1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelIsi1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelBtn4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelBtn2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelBtn1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelJudul1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(197, 197, 197))
         );
         panelLoginLayout.setVerticalGroup(
             panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -335,15 +455,17 @@ public class CbMenuUtama extends javax.swing.JFrame {
                 .addComponent(panelJudul1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
                 .addComponent(panelBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelBtn4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panelIsi1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(JLTable1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
+                .addGap(19, 19, 19)
                 .addComponent(panelBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(305, Short.MAX_VALUE))
+                .addContainerGap(279, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -354,12 +476,10 @@ public class CbMenuUtama extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panelLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setBounds(0, 0, 1557, 1328);
+        setBounds(0, 0, 1478, 1281);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProfileActionPerformed
@@ -471,6 +591,68 @@ public class CbMenuUtama extends javax.swing.JFrame {
         PU.setVisible(true);
     }//GEN-LAST:event_btnOperatorActionPerformed
 
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        // TODO add your handling code here:
+        String CustomListColmn[]= {
+            "id pinjam",
+            "id buku",
+            "judul buku",
+            "status buku",
+            "tgl peminjaman",
+            "tgl pengembalian",
+            "id user peminjam"
+        };
+        //-------------------------------------------
+
+        String listColmn[]= {
+            "id_pinjam",
+            "id_buku",
+            "judul_buku",
+            "status_buku",
+            "tgl_peminjaman",
+            "tgl_pengembalian",
+            "id_user_peminjam"
+        };
+
+        JTextField txtSearchF = (JTextField) evt.getSource();
+
+        int optionIndex = JComboBox1.getSelectedIndex();
+        String option = listColmn[optionIndex];
+        //System.out.println("dipilih : "+option);
+
+        String search = txtSearchF.getText();
+
+        DataTable = koneksiData.cSelectOneDef("tbl_pinjam",listColmn,100,option,search);
+        DefaultTableModel model = (DefaultTableModel)tblUtama1.getModel();
+
+        String dataKosong[][]= {{}};
+        if(!"".equals(txtSearchF.getText())){
+            if("err".equals(DataTable[0][0]) ){
+                model.setDataVector(dataKosong, CustomListColmn);
+            }else{
+                model.setDataVector(DataTable, CustomListColmn);
+            }
+        }else{
+            model.setDataVector(dataKosong, CustomListColmn);
+        }
+        
+        
+        tblUtama1.getColumnModel().getColumn(0).setMinWidth(70);
+        tblUtama1.getColumnModel().getColumn(0).setMaxWidth(70);
+        tblUtama1.getColumnModel().getColumn(1).setMinWidth(70);
+        tblUtama1.getColumnModel().getColumn(1).setMaxWidth(70);
+        tblUtama1.getColumnModel().getColumn(2).getPreferredWidth();
+        tblUtama1.getColumnModel().getColumn(3).setMinWidth(100);
+        tblUtama1.getColumnModel().getColumn(3).setMaxWidth(100);
+        tblUtama1.getColumnModel().getColumn(4).setMinWidth(140);
+        tblUtama1.getColumnModel().getColumn(4).setMaxWidth(140);
+        tblUtama1.getColumnModel().getColumn(5).setMinWidth(140);
+        tblUtama1.getColumnModel().getColumn(5).setMaxWidth(140);
+        tblUtama1.getColumnModel().getColumn(6).setMinWidth(70);
+        tblUtama1.getColumnModel().getColumn(6).setMaxWidth(70);
+
+    }//GEN-LAST:event_txtSearchKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -513,6 +695,7 @@ public class CbMenuUtama extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> JComboBox1;
     private javax.swing.JPanel JLTable1;
     private javax.swing.JButton btnAdmin;
     private javax.swing.JButton btnKembalikan;
@@ -522,13 +705,19 @@ public class CbMenuUtama extends javax.swing.JFrame {
     private javax.swing.JButton btnProfile;
     private javax.swing.JLabel jLJudul;
     private javax.swing.JLabel jLJudulSelamatDatang;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JPanel panelBtn1;
     private javax.swing.JPanel panelBtn2;
     private javax.swing.JPanel panelBtn3;
     private javax.swing.JPanel panelBtn4;
+    private javax.swing.JPanel panelIsi1;
     private javax.swing.JPanel panelJudul1;
     private javax.swing.JPanel panelLogin;
     private javax.swing.JTable tblUtama1;
+    private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
 }

@@ -228,13 +228,18 @@ public class FaAdmin extends javax.swing.JFrame {
             mDataBuku.setVisible(true);
         }else if("tbl_pinjam".equals(ModeData)){ 
             this.dispose();
-//            GcMenuDataPinjam mDataPinjam = new GcMenuDataPinjam();
-//            mDataPinjam.setDefaultCloseOperation(mDataPinjam.DISPOSE_ON_CLOSE);
-//            mDataPinjam.dataIn(DataLogin);
-//            mDataPinjam.dataTable(listColmn,listColmnRow,ModeData,ModeExec);  //targetColumn, isiColmnRow, namaTable, jenisEksekusi
-//            mDataPinjam.setValue();
-//            mDataPinjam.setLocationRelativeTo(null);
-//            mDataPinjam.setVisible(true);
+            FbPilihUser PU = new FbPilihUser(colorBackground,colorBackgroundForm);
+            //-------------------------------------------------
+            //Toolkit tk=Toolkit.getDefaultToolkit(); 
+            //Dimension screenSize = tk.getScreenSize(); 
+            //MA.setSize(960,screenSize.height);
+            PU.setExtendedState(PU.MAXIMIZED_BOTH);
+            //-------------------------------------------------
+            PU.setDefaultCloseOperation(PU.DISPOSE_ON_CLOSE);
+            PU.getTable();
+            PU.dataIn(DataLogin);
+            PU.setLocationRelativeTo(null);
+            PU.setVisible(true);
         }else if("tbl_kotakSaran".equals(ModeData)){
             this.dispose();
             GdMenuDataKotakSaran mDataKotakSaran = new GdMenuDataKotakSaran();
