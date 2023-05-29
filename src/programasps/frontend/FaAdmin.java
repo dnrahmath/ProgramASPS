@@ -1175,9 +1175,9 @@ public class FaAdmin extends javax.swing.JFrame {
             Connection conn = (Connection) DriverManager.getConnection(DB_URL,USER,PASS);
             Statement st = conn.createStatement();
             String sql = nmSql;
-            //String dirr = new File(".").getCanonicalPath()+"/src/programasps/backend/"; //untuk didalam Netbeans 8.2
+            String dirr = new File(".").getCanonicalPath()+"/src/programasps/backend/"; //untuk didalam Netbeans 8.2
             //--masih ada problem jika menggunakan new File(), maka membuat baru di lokasi baru 
-            String dirr = new File("../src/programasps/backend/").getCanonicalPath()+"/"; //untuk ketika build
+            //String dirr = new File("../src/programasps/backend/").getCanonicalPath()+"/"; //untuk ketika build
             
             
             System.out.println(dirr);
@@ -1216,8 +1216,8 @@ public class FaAdmin extends javax.swing.JFrame {
     //---------------------------------------------------------------------------------------
     
     private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
-        //exportJesper();
-        exportJTable();
+        exportJesper();
+        //exportJTable();
     }//GEN-LAST:event_btnExportActionPerformed
 
     /**
