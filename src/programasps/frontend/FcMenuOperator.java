@@ -84,7 +84,7 @@ public class FcMenuOperator extends javax.swing.JFrame {
         if( nominalVar != 0 && waktuPinjamVar != 0){
             nominalDendaOneDay = (int) txtnominal.getValue();
             waktuPinjam = (int) txtwaktupinjam.getValue();
-        }else if( nominalVar == 0 && waktuPinjamVar == 0){
+        }else if( nominalVar == 0 || waktuPinjamVar == 0){
             JOptionPane.showMessageDialog(
                         null,
                         "Textfield Tidak Boleh Kosong !!",
