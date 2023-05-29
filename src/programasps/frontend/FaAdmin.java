@@ -131,15 +131,15 @@ public class FaAdmin extends javax.swing.JFrame {
             listColmn[10] = "alamat";
         }else if("tbl_buku".equals(ModeData)){ 
             listColmn = new String[9];
-            listColmn[0] = "Id";
-            listColmn[1] = "Judul Buku";
-            listColmn[2] = "Penulis Buku";
-            listColmn[3] = "Penerbit Oleh";
-            listColmn[4] = "Tahun Buku";
-            listColmn[5] = "Kelas";
-            listColmn[6] = "Status Buku";
-            listColmn[7] = "Nama Petugas Input";
-            listColmn[8] = "Sort Id";
+            listColmn[0] = "id_buku";
+            listColmn[1] = "judul_buku";
+            listColmn[2] = "penulis_buku";
+            listColmn[3] = "penerbit_oleh";
+            listColmn[4] = "tahun_buku";
+            listColmn[5] = "buku_kelas";
+            listColmn[6] = "status_buku";
+            listColmn[7] = "nama_petugas_input";
+            listColmn[8] = "sort_id";
         }else if("tbl_pinjam".equals(ModeData)){ 
             listColmn = new String[9];
             listColmn[0] = "id_pinjam";

@@ -25,6 +25,7 @@ public class GbMenuDataBuku extends javax.swing.JFrame {
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");  
     LocalDateTime now = LocalDateTime.now();   
     
+    String CBstatusBuku[] = {"TIDAK DIPINJAM","DIPINJAM"};
     
     String ModeData; //table_nama
     String ModeExec; //mode eksekusi
@@ -45,6 +46,9 @@ public class GbMenuDataBuku extends javax.swing.JFrame {
         panelJudul1.setBackground(new Color(100, 0, 0, 0));
         panelIsi1.setBackground(new Color(100, 0, 0, 0));
         panelBtn1.setBackground(new Color(100, 0, 0, 0));
+        
+        JCBstatusbuku.addItem("TIDAK DIPINJAM");
+        JCBstatusbuku.addItem("DIPINJAM");
         //DefaultButtonModel btnEditVar = (DefaultButtonModel)btnEdit.getModel();
         //String btnMode = "INSERT";
         
@@ -73,8 +77,7 @@ public class GbMenuDataBuku extends javax.swing.JFrame {
             txtnmpetugasinput.setEditable(false);
         }else{
             btnExec.setText("INSERT");
-            txtstatusbuku.setText("TIDAK DIPINJAM");
-            txtstatusbuku.setEditable(false);
+            JCBstatusbuku.setEnabled(false);
             txtnmpetugasinput.setText(DataLogin[0][1]);
             txtnmpetugasinput.setEditable(false);
         }
@@ -87,7 +90,7 @@ public class GbMenuDataBuku extends javax.swing.JFrame {
             txtpenerbitoleh.setText(listColmnRow[3]);
             txttahunbuku.setText(listColmnRow[4]);
             txtbukukelas.setText(listColmnRow[5]);
-            txtstatusbuku.setText(listColmnRow[6]);
+            JCBstatusbuku.setSelectedItem(listColmnRow[6]);
             txtnmpetugasinput.setText(listColmnRow[7]);
             txtshortid.setText(listColmnRow[8]);
         }else{
@@ -104,7 +107,7 @@ public class GbMenuDataBuku extends javax.swing.JFrame {
             txtpenerbitoleh.getText(),
             txttahunbuku.getText(),
             txtbukukelas.getText(),
-            txtstatusbuku.getText(),
+            CBstatusBuku[JCBstatusbuku.getSelectedIndex()],
             txtnmpetugasinput.getText(),
             txtshortid.getText(),
         };
@@ -115,7 +118,8 @@ public class GbMenuDataBuku extends javax.swing.JFrame {
         // ditambah opsi JIKA KOSONG -> tidak jadi
         if("INSERT".equals(ModeExec)){
             //listColmnRowBaru[0] = "0";  //pakai AUTO_INCREMENT
-            listColmnRowBaru[6] = "0";  //short_id  baru
+            listColmnRowBaru[6] = "TIDAK DIPINJAM";  //status_buku
+            listColmnRowBaru[8] = "0";  //short_id  baru
             koneksiData conn = new koneksiData();
             conn.cInsert(ModeData,listColmn,listColmnRowBaru);
             //-------------
@@ -131,7 +135,7 @@ public class GbMenuDataBuku extends javax.swing.JFrame {
             
         }else{
             koneksiData conn = new koneksiData();
-            conn.cUpdate(ModeData,listColmn,listColmnRowBaru,listColmn[0],listColmnRowBaru[0]);
+            conn.cUpdate(ModeData,listColmn,listColmnRowBaru,listColmn[8],listColmnRowBaru[8]);
             //-------------
             this.dispose();
             FaAdmin MA = new FaAdmin();
@@ -188,10 +192,10 @@ public class GbMenuDataBuku extends javax.swing.JFrame {
         txtshortid = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
-        txtstatusbuku = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
         txtbukukelas = new javax.swing.JTextField();
+        JCBstatusbuku = new javax.swing.JComboBox<>();
         panelBtn1 = new javax.swing.JPanel();
         btnExec = new javax.swing.JButton();
         btnCancle = new javax.swing.JButton();
@@ -320,12 +324,6 @@ public class GbMenuDataBuku extends javax.swing.JFrame {
         jLabel27.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
         jLabel27.setText(" :");
 
-        txtstatusbuku.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtstatusbukuKeyPressed(evt);
-            }
-        });
-
         jLabel29.setFont(new java.awt.Font("Liberation Sans", 0, 15)); // NOI18N
         jLabel29.setText("Buku Kelas");
 
@@ -363,24 +361,8 @@ public class GbMenuDataBuku extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel19)
                         .addGap(18, 18, 18)
-                        .addComponent(txtpenulisbuku, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelIsi1Layout.createSequentialGroup()
-                        .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelIsi1Layout.createSequentialGroup()
-                                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(63, 63, 63)
-                                .addComponent(txtshortid))
-                            .addGroup(panelIsi1Layout.createSequentialGroup()
-                                .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel31)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelIsi1Layout.createSequentialGroup()
-                        .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel27)
-                        .addGap(15, 15, 15)
-                        .addComponent(txtstatusbuku))
+                        .addComponent(txtpenulisbuku, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(3, 3, 3))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelIsi1Layout.createSequentialGroup()
                         .addComponent(jLabel18)
                         .addGap(12, 12, 12)
@@ -392,7 +374,9 @@ public class GbMenuDataBuku extends javax.swing.JFrame {
                                 .addGap(3, 3, 3)
                                 .addComponent(jLabel23)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtnmpetugasinput))))
+                                .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(JCBstatusbuku, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtnmpetugasinput)))))
                     .addGroup(panelIsi1Layout.createSequentialGroup()
                         .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(panelIsi1Layout.createSequentialGroup()
@@ -410,8 +394,23 @@ public class GbMenuDataBuku extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelIsi1Layout.createSequentialGroup()
                                 .addComponent(jLabel22)
                                 .addGap(18, 18, 18)
-                                .addComponent(txtidbuku)))))
-                .addGap(29, 29, 29))
+                                .addComponent(txtidbuku))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelIsi1Layout.createSequentialGroup()
+                        .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelIsi1Layout.createSequentialGroup()
+                                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(63, 63, 63)
+                                .addComponent(txtshortid))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelIsi1Layout.createSequentialGroup()
+                                .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel31))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelIsi1Layout.createSequentialGroup()
+                                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel27)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(26, 26, 26))
         );
         panelIsi1Layout.setVerticalGroup(
             panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -448,10 +447,11 @@ public class GbMenuDataBuku extends javax.swing.JFrame {
                     .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtbukukelas, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtstatusbuku, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(JCBstatusbuku, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -605,17 +605,10 @@ public class GbMenuDataBuku extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtidbukuKeyPressed
 
-    private void txtstatusbukuKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtstatusbukuKeyPressed
-        // TODO add your handling code here:
-        if(evt.getKeyCode()==evt.VK_ENTER){
-            txtnmpetugasinput.requestFocusInWindow();
-        }
-    }//GEN-LAST:event_txtstatusbukuKeyPressed
-
     private void txtbukukelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbukukelasKeyPressed
         // TODO add your handling code here:
         if(evt.getKeyCode()==evt.VK_ENTER){
-            txtstatusbuku.requestFocusInWindow();
+            JCBstatusbuku.requestFocusInWindow();
         }
     }//GEN-LAST:event_txtbukukelasKeyPressed
 
@@ -660,6 +653,7 @@ public class GbMenuDataBuku extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> JCBstatusbuku;
     private javax.swing.JButton btnCancle;
     private javax.swing.JButton btnExec;
     private javax.swing.JLabel jLabel1;
@@ -693,7 +687,6 @@ public class GbMenuDataBuku extends javax.swing.JFrame {
     private javax.swing.JTextField txtpenerbitoleh;
     private javax.swing.JTextField txtpenulisbuku;
     private javax.swing.JLabel txtshortid;
-    private javax.swing.JTextField txtstatusbuku;
     private javax.swing.JTextField txttahunbuku;
     // End of variables declaration//GEN-END:variables
 }
