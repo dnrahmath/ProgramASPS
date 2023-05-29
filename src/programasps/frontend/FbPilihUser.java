@@ -66,8 +66,6 @@ public class FbPilihUser extends javax.swing.JFrame {
         
         JComboBox1.setBackground(new Color(255, 255, 255, 255));
         
-        
-        
     }
     
     public String[][] dataIn(String[][] dataLogin){

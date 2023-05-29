@@ -19,7 +19,6 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import programasps.backend.config;
 
 /**
  *
@@ -164,7 +163,7 @@ public class DcMenuKembalikanBuku extends javax.swing.JFrame {
         if(totalHri > waktuPinjam){ //jika lehih dari 7 hari
 //            tidakDenda = 0; //disetting kenaDenda
             jmlhTelatHri = totalHri - waktuPinjam;
-            nominalDenda = config.nominalDendaOneDay*jmlhTelatHri;  //kena denda 500/hari semenjak telat
+            nominalDenda = FcMenuOperator.nominalDendaOneDay*jmlhTelatHri;  //kena denda 500/hari semenjak telat
         }else{
 //            tidakDenda = 1; //disetting tidak kenaDenda
             nominalDenda = 0;

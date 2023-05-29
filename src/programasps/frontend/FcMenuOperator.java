@@ -21,6 +21,9 @@ public class FcMenuOperator extends javax.swing.JFrame {
      * Creates new form AaGuestPanel
      */
     
+    public static int waktuPinjam = 7;
+    public static int nominalDendaOneDay = 500;
+    
     //colors background
     Color colorBackground;
     Color colorBackgroundForm;
@@ -37,13 +40,15 @@ public class FcMenuOperator extends javax.swing.JFrame {
         panelJudul1.setBackground(colorBackgroundForm);
         panelBtn2.setBackground(colorBackgroundForm);
         panelBtn3.setBackground(colorBackgroundForm);
+        panelIsi1.setBackground(colorBackgroundForm);
         //[panelBelakang]
         panelLogin.setBackground(colorBackground);
-        
         
         panelBtn2.setVisible(true);
         panelBtn3.setVisible(true);
         
+        txtwaktupinjam.setValue(waktuPinjam);
+        txtnominal.setValue(nominalDendaOneDay);
         
         //-------------------------------------
         //panelBtn2.setSize(680,440);
@@ -62,11 +67,29 @@ public class FcMenuOperator extends javax.swing.JFrame {
     
     public void setValue(){
         jLJudulSelamatDatang.setText("Selamat datang, "+DataLogin[0][1]); //nama
+        txtwaktupinjam.setValue(waktuPinjam);
+        txtnominal.setValue(nominalDendaOneDay);
         if( "ADMIN".equals(DataLogin[0][5]) ){ //peran
             //JIKA ADMIN
         }else{
             //JIKA BUKAN ADMIN
         }
+    }
+    
+    
+    
+    public void funcSaveOperator(){
+        int nominalVar = (int) txtnominal.getValue();
+        int waktuPinjamVar = (int) txtwaktupinjam.getValue();
+        if( nominalVar != 0 && waktuPinjamVar != 0){
+            nominalDendaOneDay = (int) txtnominal.getValue();
+            waktuPinjam = (int) txtwaktupinjam.getValue();
+        }else if( nominalVar == 0 && waktuPinjamVar == 0){
+            JOptionPane.showMessageDialog(
+                        null,
+                        "Textfield Tidak Boleh Kosong !!",
+                        "Message", JOptionPane.INFORMATION_MESSAGE);
+        }else{}
     }
 
     /**
@@ -87,6 +110,16 @@ public class FcMenuOperator extends javax.swing.JFrame {
         btnKembalikan = new javax.swing.JButton();
         panelBtn3 = new javax.swing.JPanel();
         btnLogout = new javax.swing.JButton();
+        panelIsi1 = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        btnSaveOperator = new javax.swing.JButton();
+        txtwaktupinjam = new javax.swing.JSpinner();
+        txtnominal = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -106,10 +139,10 @@ public class FcMenuOperator extends javax.swing.JFrame {
             panelJudul1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelJudul1Layout.createSequentialGroup()
                 .addGap(54, 54, 54)
-                .addComponent(jLJudulSelamatDatang, javax.swing.GroupLayout.DEFAULT_SIZE, 906, Short.MAX_VALUE)
+                .addComponent(jLJudulSelamatDatang, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(53, 53, 53))
             .addGroup(panelJudul1Layout.createSequentialGroup()
-                .addGap(272, 272, 272)
+                .addGap(347, 347, 347)
                 .addComponent(jLJudul)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -152,18 +185,20 @@ public class FcMenuOperator extends javax.swing.JFrame {
             .addGroup(panelBtn2Layout.createSequentialGroup()
                 .addGap(54, 54, 54)
                 .addComponent(btnPinjam, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 310, Short.MAX_VALUE)
                 .addComponent(btnKembalikan, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
+                .addGap(64, 64, 64))
         );
         panelBtn2Layout.setVerticalGroup(
             panelBtn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBtn2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBtn2Layout.createSequentialGroup()
                 .addContainerGap(12, Short.MAX_VALUE)
-                .addGroup(panelBtn2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnPinjam, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE)
-                    .addComponent(btnKembalikan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(13, 13, 13))
+                .addComponent(btnPinjam, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBtn2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnKembalikan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         panelBtn3.setBackground(new java.awt.Color(153, 255, 153));
@@ -183,7 +218,7 @@ public class FcMenuOperator extends javax.swing.JFrame {
         panelBtn3Layout.setHorizontalGroup(
             panelBtn3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBtn3Layout.createSequentialGroup()
-                .addContainerGap(610, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56))
         );
@@ -195,17 +230,108 @@ public class FcMenuOperator extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        panelIsi1.setBackground(new java.awt.Color(153, 255, 153));
+
+        jLabel14.setFont(new java.awt.Font("Liberation Sans", 0, 15)); // NOI18N
+        jLabel14.setText("Waktu Pinjam");
+
+        jLabel12.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        jLabel12.setText(" :");
+
+        jLabel17.setFont(new java.awt.Font("Liberation Sans", 0, 15)); // NOI18N
+        jLabel17.setText("Nominal Denda");
+
+        jLabel19.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        jLabel19.setText(" :");
+
+        jLabel15.setFont(new java.awt.Font("Liberation Sans", 0, 36)); // NOI18N
+        jLabel15.setText("PENGATURAN OPERATOR");
+
+        jLabel16.setFont(new java.awt.Font("Liberation Sans", 0, 15)); // NOI18N
+        jLabel16.setText(" HARI");
+
+        btnSaveOperator.setBackground(new java.awt.Color(255, 255, 255));
+        btnSaveOperator.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        btnSaveOperator.setIcon(new javax.swing.ImageIcon(getClass().getResource("/programasps/images/icon_asps/iloveimg-resized-16/clipboard.png"))); // NOI18N
+        btnSaveOperator.setText("SAVE");
+        btnSaveOperator.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveOperatorActionPerformed(evt);
+            }
+        });
+
+        txtwaktupinjam.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                txtwaktupinjamStateChanged(evt);
+            }
+        });
+
+        txtnominal.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                txtnominalStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout panelIsi1Layout = new javax.swing.GroupLayout(panelIsi1);
+        panelIsi1.setLayout(panelIsi1Layout);
+        panelIsi1Layout.setHorizontalGroup(
+            panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelIsi1Layout.createSequentialGroup()
+                .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelIsi1Layout.createSequentialGroup()
+                        .addGap(103, 103, 103)
+                        .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(27, 27, 27)
+                        .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel19))
+                        .addGap(18, 18, 18)
+                        .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtnominal, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                            .addComponent(txtwaktupinjam))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(btnSaveOperator, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelIsi1Layout.createSequentialGroup()
+                        .addGap(329, 329, 329)
+                        .addComponent(jLabel15)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelIsi1Layout.setVerticalGroup(
+            panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelIsi1Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
+                .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSaveOperator, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtwaktupinjam, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtnominal, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(51, 51, 51))
+        );
+
         javax.swing.GroupLayout panelLoginLayout = new javax.swing.GroupLayout(panelLogin);
         panelLogin.setLayout(panelLoginLayout);
         panelLoginLayout.setHorizontalGroup(
             panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLoginLayout.createSequentialGroup()
-                .addGap(205, 205, 205)
-                .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panelJudul1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelBtn2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(151, 151, 151)
+                .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(panelIsi1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelJudul1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panelBtn2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panelBtn3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(323, Short.MAX_VALUE))
+                .addContainerGap(503, Short.MAX_VALUE))
         );
         panelLoginLayout.setVerticalGroup(
             panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,7 +340,9 @@ public class FcMenuOperator extends javax.swing.JFrame {
                 .addComponent(panelJudul1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(panelBtn2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(30, 30, 30)
+                .addComponent(panelIsi1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
                 .addComponent(panelBtn3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(305, Short.MAX_VALUE))
         );
@@ -232,7 +360,7 @@ public class FcMenuOperator extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        setBounds(0, 0, 1557, 758);
+        setBounds(0, 0, 1798, 916);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
@@ -275,6 +403,21 @@ public class FcMenuOperator extends javax.swing.JFrame {
 
         mPB.setVisible(true);
     }//GEN-LAST:event_btnPinjamActionPerformed
+
+    private void btnSaveOperatorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveOperatorActionPerformed
+        // TODO add your handling code here:
+        funcSaveOperator();
+    }//GEN-LAST:event_btnSaveOperatorActionPerformed
+
+    private void txtwaktupinjamStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_txtwaktupinjamStateChanged
+        // TODO add your handling code here:
+        funcSaveOperator();
+    }//GEN-LAST:event_txtwaktupinjamStateChanged
+
+    private void txtnominalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_txtnominalStateChanged
+        // TODO add your handling code here:
+        funcSaveOperator();
+    }//GEN-LAST:event_txtnominalStateChanged
 
     /**
      * @param args the command line arguments
@@ -323,11 +466,21 @@ public class FcMenuOperator extends javax.swing.JFrame {
     private javax.swing.JButton btnKembalikan;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnPinjam;
+    private javax.swing.JButton btnSaveOperator;
     private javax.swing.JLabel jLJudul;
     private javax.swing.JLabel jLJudulSelamatDatang;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JPanel panelBtn2;
     private javax.swing.JPanel panelBtn3;
+    private javax.swing.JPanel panelIsi1;
     private javax.swing.JPanel panelJudul1;
     private javax.swing.JPanel panelLogin;
+    private javax.swing.JSpinner txtnominal;
+    private javax.swing.JSpinner txtwaktupinjam;
     // End of variables declaration//GEN-END:variables
 }

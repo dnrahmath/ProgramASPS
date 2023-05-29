@@ -17,7 +17,6 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-import programasps.backend.config;
 
 /**
  *
@@ -381,7 +380,7 @@ public class DbMenuPinjamBuku extends javax.swing.JFrame {
                                      DataLogin[0][0],
                                      "0",
                                      "0",
-                                     config.waktuPinjam+"",
+                                     FcMenuOperator.waktuPinjam+"",
                                     };
             
             koneksiData conn = new koneksiData();
