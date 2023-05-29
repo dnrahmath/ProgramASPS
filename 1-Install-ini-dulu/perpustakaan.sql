@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2023 at 06:35 AM
+-- Generation Time: May 29, 2023 at 05:22 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -454,8 +454,7 @@ CREATE TABLE `tbl_kotaksaran` (
 --
 
 INSERT INTO `tbl_kotaksaran` (`id`, `nama`, `saran`, `tanggal`, `sort_id`) VALUES
-(1, 'admin', 'terimakasih', '2023/05/15 21:33:52', 0),
-(2, 'arif07', 'suka', '2023/05/15 22:03:43', 0);
+(1, 'arif078', 'terimakasih atas bukunya', '2023/05/29 09:53:46', 0);
 
 -- --------------------------------------------------------
 
@@ -472,6 +471,7 @@ CREATE TABLE `tbl_pinjam` (
   `tgl_pengembalian` varchar(50) NOT NULL,
   `id_user_peminjam` varchar(50) DEFAULT 'BELUM ADA',
   `denda` int(255) DEFAULT 0,
+  `waktu_pinjam` int(255) DEFAULT 0,
   `sort_id` int(255) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -479,12 +479,9 @@ CREATE TABLE `tbl_pinjam` (
 -- Dumping data for table `tbl_pinjam`
 --
 
-INSERT INTO `tbl_pinjam` (`id_pinjam`, `id_buku`, `judul_buku`, `status_buku`, `tgl_peminjaman`, `tgl_pengembalian`, `id_user_peminjam`, `denda`, `sort_id`) VALUES
-(1, 11, 'ILMU PENGETAHUAN SOSIAL', 'DIKEMBALIKAN', '2020/08/15 21:33:33', '2023/05/15 22:17:10', '1', 0, 0),
-(2, 20, 'SOSIOLOGI', 'DIKEMBALIKAN', '2023/05/15 22:22:21', '2023/05/15 22:17:10', '1', 0, 0),
-(3, 13, 'ILMU PENGETAHUAN SOSIAL', 'DIPINJAM', '2023/05/15 22:01:42', '0', '2', 0, 0),
-(4, 2, 'ILMU PENGETAHUAN SOSIAL', 'DIKEMBALIKAN', '2023/05/15 22:02:22', '2023/05/15 22:03:37', '2', 0, 0),
-(5, 20, 'SOSIOLOGI', 'DIPINJAM', '2023/05/15 22:22:37', '0', '1', 0, 0);
+INSERT INTO `tbl_pinjam` (`id_pinjam`, `id_buku`, `judul_buku`, `status_buku`, `tgl_peminjaman`, `tgl_pengembalian`, `id_user_peminjam`, `denda`, `waktu_pinjam`, `sort_id`) VALUES
+(1, 26, 'ILMU PENGETAHUAN SOSIAL', 'DIPINJAM', '2023/04/18 09:23:32', '0', '2', 13500, 14, 0),
+(2, 25, 'ILMU PENGETAHUAN SOSIAL', 'DIKEMBALIKAN', '2023/05/29 09:49:57', '2023/05/29 09:53:39', '2', 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -506,7 +503,7 @@ CREATE TABLE `tbl_tamu` (
 --
 
 INSERT INTO `tbl_tamu` (`id`, `nama`, `asal`, `catatan`, `tanggal`, `sort_id`) VALUES
-(1, 'pak arif', '12b', 'belajar perpus 1 kelas', '2023/05/15 20:56:23', 0);
+(1, 'arif', 'X', 'berkunjung', '2023/05/29 09:52:06', 0);
 
 -- --------------------------------------------------------
 
@@ -585,13 +582,13 @@ ALTER TABLE `tbl_buku`
 -- AUTO_INCREMENT for table `tbl_kotaksaran`
 --
 ALTER TABLE `tbl_kotaksaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_pinjam`
 --
 ALTER TABLE `tbl_pinjam`
-  MODIFY `id_pinjam` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_pinjam` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `tbl_tamu`

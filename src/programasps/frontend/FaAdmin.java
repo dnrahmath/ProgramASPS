@@ -32,6 +32,8 @@ import net.sf.jasperreports.view.JasperViewer;
 //import com.sun.istack.internal.logging.Logger;
 import java.awt.Color;
 import java.io.IOException;
+import java.text.MessageFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
@@ -45,6 +47,8 @@ import net.sf.jasperreports.engine.JRResultSetDataSource;
 import programasps.backend.koneksiData;
 import static programasps.frontend.DcMenuKembalikanBuku.hitungDendaString;
 //import sun.util.logging.PlatformLogger;
+import java.time.LocalDate;
+import javax.swing.JTable;
 
 /**
  *
@@ -137,7 +141,7 @@ public class FaAdmin extends javax.swing.JFrame {
             listColmn[7] = "Nama Petugas Input";
             listColmn[8] = "Sort Id";
         }else if("tbl_pinjam".equals(ModeData)){ 
-            listColmn = new String[8];
+            listColmn = new String[9];
             listColmn[0] = "id_pinjam";
             listColmn[1] = "id_buku";
             listColmn[2] = "judul_buku";
@@ -145,7 +149,8 @@ public class FaAdmin extends javax.swing.JFrame {
             listColmn[4] = "tgl_peminjaman";
             listColmn[5] = "tgl_pengembalian";
             listColmn[6] = "id_user_peminjam"; 
-            listColmn[7] = "denda"; 
+            listColmn[7] = "denda";
+            listColmn[8] = "waktu_pinjam";
         }else if("tbl_kotakSaran".equals(ModeData)){
             listColmn = new String[4];
             listColmn[0] = "id";
@@ -198,6 +203,8 @@ public class FaAdmin extends javax.swing.JFrame {
             tblUtama.getColumnModel().getColumn(6).setMaxWidth(40);
             tblUtama.getColumnModel().getColumn(7).setMinWidth(10);
             tblUtama.getColumnModel().getColumn(7).setMaxWidth(60);
+            tblUtama.getColumnModel().getColumn(8).setMinWidth(10);
+            tblUtama.getColumnModel().getColumn(8).setMaxWidth(60);
         }else if("tbl_kotakSaran".equals(ModeData)){
             tblUtama.getColumnModel().getColumn(0).setMinWidth(10);
             tblUtama.getColumnModel().getColumn(0).setMaxWidth(30);
@@ -379,7 +386,7 @@ public class FaAdmin extends javax.swing.JFrame {
         btnInsert.setText("OPERATOR PEMINJAMAN DAN PENGEMBALIAN BUKU");
         btnUpdate.setVisible(false);
         //ComboBox Pilihan  -------
-        CustomListColmn = new String[8];
+        CustomListColmn = new String[9];
         CustomListColmn[0] = "Id Pinjam";
         CustomListColmn[1] = "Id Buku";
         CustomListColmn[2] = "Judul Buku";
@@ -388,6 +395,7 @@ public class FaAdmin extends javax.swing.JFrame {
         CustomListColmn[5] = "Tgl Pengembalian";
         CustomListColmn[6] = "Usr";
         CustomListColmn[7] = "Denda";
+        CustomListColmn[8] = "Waktu Pinjam (hari)";
            
         JComboBox1.removeAllItems();
         for (int i = 0; i < CustomListColmn.length; i++) {
@@ -398,7 +406,7 @@ public class FaAdmin extends javax.swing.JFrame {
             
         
         //Table get----------------
-        listColmn = new String[8];
+        listColmn = new String[9];
         listColmn[0] = "id_pinjam";
         listColmn[1] = "id_buku";
         listColmn[2] = "judul_buku";
@@ -407,6 +415,7 @@ public class FaAdmin extends javax.swing.JFrame {
         listColmn[5] = "tgl_pengembalian";
         listColmn[6] = "id_user_peminjam";
         listColmn[7] = "denda";
+        listColmn[8] = "waktu_pinjam";
         
         
         koneksiData conn = new koneksiData();
@@ -420,8 +429,10 @@ public class FaAdmin extends javax.swing.JFrame {
                 int intThn1 = Integer.parseInt(thn1);
                 int intBln1 = Integer.parseInt(bln1);
                 int intHri1 = Integer.parseInt(hri1);
-                String nominalDendaRp = hitungDendaString(intThn1,intBln1,intHri1);
+                int waktuPinjam = Integer.parseInt(DataTable[i][8]);
+                String nominalDendaRp = hitungDendaString(waktuPinjam,intThn1,intBln1,intHri1);
                 DataTable[i][7] = nominalDendaRp;
+                koneksiData.cUpdate("tbl_pinjam",listColmn,DataTable[i],"id_pinjam",DataTable[i][0]);
             }
         }
         //-------------------------------------------------------------------------------
@@ -1126,8 +1137,9 @@ public class FaAdmin extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnDelActionPerformed
 
-    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
-        // TODO add your handling code here: 
+    //---------------------------------------------------------------------------------------
+    public void exportJesper(){
+    // TODO add your handling code here: 
         String USER = "root";
         String PASS = "";
         String DB_NAME = "perpustakaan";
@@ -1186,10 +1198,26 @@ public class FaAdmin extends javax.swing.JFrame {
                         "GAGAl Mencetak : "+ex ,
                         "Message", JOptionPane.ERROR_MESSAGE);
         }
-        
-        
-        
-        
+    }
+    
+    //---------------------------------------------------------------------------------------
+    public void exportJTable(){
+        LocalDate datenow = LocalDate.now();
+       
+        MessageFormat header=new MessageFormat("Report : "+datenow.toString());
+        MessageFormat footer=new MessageFormat("page{0,number,integer}");
+        try {
+            tblUtama.print(JTable.PrintMode.FIT_WIDTH, header, footer);
+        } catch (Exception e) {
+            e.getMessage();
+        } 
+    }
+    
+    //---------------------------------------------------------------------------------------
+    
+    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
+        //exportJesper();
+        exportJTable();
     }//GEN-LAST:event_btnExportActionPerformed
 
     /**

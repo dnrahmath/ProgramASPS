@@ -69,8 +69,14 @@ public class GbMenuDataBuku extends javax.swing.JFrame {
         if("UPDATE".equals(ModeExec)){
             btnExec.setText("UPDATE");
             txtidbuku.setEditable(false);
+            txtnmpetugasinput.setText(DataLogin[0][1]);
+            txtnmpetugasinput.setEditable(false);
         }else{
             btnExec.setText("INSERT");
+            txtstatusbuku.setText("TIDAK DIPINJAM");
+            txtstatusbuku.setEditable(false);
+            txtnmpetugasinput.setText(DataLogin[0][1]);
+            txtnmpetugasinput.setEditable(false);
         }
         
         if("UPDATE".equals(ModeExec)){
@@ -80,8 +86,10 @@ public class GbMenuDataBuku extends javax.swing.JFrame {
             txtpenulisbuku.setText(listColmnRow[2]);
             txtpenerbitoleh.setText(listColmnRow[3]);
             txttahunbuku.setText(listColmnRow[4]);
-            txtnmpetugasinput.setText(listColmnRow[5]);
-            txtshortid.setText(listColmnRow[6]);
+            txtbukukelas.setText(listColmnRow[5]);
+            txtstatusbuku.setText(listColmnRow[6]);
+            txtnmpetugasinput.setText(listColmnRow[7]);
+            txtshortid.setText(listColmnRow[8]);
         }else{
             //.setText("");
         }
@@ -95,6 +103,8 @@ public class GbMenuDataBuku extends javax.swing.JFrame {
             txtpenulisbuku.getText(),
             txtpenerbitoleh.getText(),
             txttahunbuku.getText(),
+            txtbukukelas.getText(),
+            txtstatusbuku.getText(),
             txtnmpetugasinput.getText(),
             txtshortid.getText(),
         };
@@ -176,6 +186,12 @@ public class GbMenuDataBuku extends javax.swing.JFrame {
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         txtshortid = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        txtstatusbuku = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        txtbukukelas = new javax.swing.JTextField();
         panelBtn1 = new javax.swing.JPanel();
         btnExec = new javax.swing.JButton();
         btnCancle = new javax.swing.JButton();
@@ -298,75 +314,104 @@ public class GbMenuDataBuku extends javax.swing.JFrame {
         txtshortid.setFont(new java.awt.Font("Liberation Sans", 0, 15)); // NOI18N
         txtshortid.setText("-");
 
+        jLabel26.setFont(new java.awt.Font("Liberation Sans", 0, 15)); // NOI18N
+        jLabel26.setText("Status Buku");
+
+        jLabel27.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        jLabel27.setText(" :");
+
+        txtstatusbuku.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtstatusbukuKeyPressed(evt);
+            }
+        });
+
+        jLabel29.setFont(new java.awt.Font("Liberation Sans", 0, 15)); // NOI18N
+        jLabel29.setText("Buku Kelas");
+
+        jLabel31.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
+        jLabel31.setText(" :");
+
+        txtbukukelas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtbukukelasKeyPressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelIsi1Layout = new javax.swing.GroupLayout(panelIsi1);
         panelIsi1.setLayout(panelIsi1Layout);
         panelIsi1Layout.setHorizontalGroup(
             panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelIsi1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelIsi1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel17)
-                        .addGap(55, 55, 55)
-                        .addComponent(jLabel19)
-                        .addGap(18, 18, 18)
-                        .addComponent(txtpenulisbuku, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelIsi1Layout.createSequentialGroup()
                         .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panelIsi1Layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel20)
-                                .addGap(52, 52, 52))
-                            .addGroup(panelIsi1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jLabel28)
-                                .addGap(64, 64, 64)))
+                            .addComponent(jLabel20)
+                            .addComponent(jLabel28))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel34)
                             .addComponent(jLabel30))
                         .addGap(18, 18, 18)
                         .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtbukukelas, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txttahunbuku, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
                             .addComponent(txtpenerbitoleh)))
                     .addGroup(panelIsi1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelIsi1Layout.createSequentialGroup()
-                                .addComponent(jLabel18)
-                                .addGap(12, 12, 12)
-                                .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelIsi1Layout.createSequentialGroup()
-                                        .addComponent(jLabel25)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(panelIsi1Layout.createSequentialGroup()
-                                        .addComponent(jLabel23)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtnmpetugasinput))))
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel19)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtpenulisbuku, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelIsi1Layout.createSequentialGroup()
+                        .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panelIsi1Layout.createSequentialGroup()
-                                .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(panelIsi1Layout.createSequentialGroup()
-                                        .addComponent(jLabel14)
-                                        .addGap(74, 74, 74))
-                                    .addGroup(panelIsi1Layout.createSequentialGroup()
-                                        .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(55, 55, 55)))
-                                .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panelIsi1Layout.createSequentialGroup()
-                                        .addComponent(jLabel12)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtjudulbuku, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelIsi1Layout.createSequentialGroup()
-                                        .addComponent(jLabel22)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtidbuku)))))))
+                                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(63, 63, 63)
+                                .addComponent(txtshortid))
+                            .addGroup(panelIsi1Layout.createSequentialGroup()
+                                .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel31)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelIsi1Layout.createSequentialGroup()
+                        .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel27)
+                        .addGap(15, 15, 15)
+                        .addComponent(txtstatusbuku))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelIsi1Layout.createSequentialGroup()
+                        .addComponent(jLabel18)
+                        .addGap(12, 12, 12)
+                        .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelIsi1Layout.createSequentialGroup()
+                                .addComponent(jLabel25)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(panelIsi1Layout.createSequentialGroup()
+                                .addGap(3, 3, 3)
+                                .addComponent(jLabel23)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtnmpetugasinput))))
+                    .addGroup(panelIsi1Layout.createSequentialGroup()
+                        .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(panelIsi1Layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addGap(74, 74, 74))
+                            .addGroup(panelIsi1Layout.createSequentialGroup()
+                                .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(55, 55, 55)))
+                        .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelIsi1Layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtjudulbuku, javax.swing.GroupLayout.PREFERRED_SIZE, 317, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelIsi1Layout.createSequentialGroup()
+                                .addComponent(jLabel22)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtidbuku)))))
                 .addGap(29, 29, 29))
-            .addGroup(panelIsi1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
-                .addComponent(txtshortid)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelIsi1Layout.setVerticalGroup(
             panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -393,11 +438,21 @@ public class GbMenuDataBuku extends javax.swing.JFrame {
                     .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                     .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txttahunbuku, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(12, 12, 12)
+                        .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
+                    .addComponent(txttahunbuku))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtbukukelas, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtstatusbuku, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtnmpetugasinput, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -468,7 +523,7 @@ public class GbMenuDataBuku extends javax.swing.JFrame {
                 .addComponent(panelJudul1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(panelIsi1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
+                .addGap(29, 29, 29)
                 .addComponent(panelBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(71, 71, 71))
         );
@@ -477,9 +532,7 @@ public class GbMenuDataBuku extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 714, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 714, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -488,7 +541,7 @@ public class GbMenuDataBuku extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        setBounds(0, 0, 647, 664);
+        setBounds(0, 0, 645, 767);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnExecActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExecActionPerformed
@@ -534,7 +587,7 @@ public class GbMenuDataBuku extends javax.swing.JFrame {
     private void txttahunbukuKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttahunbukuKeyPressed
         // TODO add your handling code here:
         if(evt.getKeyCode()==evt.VK_ENTER){
-            txtnmpetugasinput.requestFocusInWindow();
+            txtbukukelas.requestFocusInWindow();
         }
     }//GEN-LAST:event_txttahunbukuKeyPressed
 
@@ -551,6 +604,20 @@ public class GbMenuDataBuku extends javax.swing.JFrame {
             txtjudulbuku.requestFocusInWindow();
         }
     }//GEN-LAST:event_txtidbukuKeyPressed
+
+    private void txtstatusbukuKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtstatusbukuKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==evt.VK_ENTER){
+            txtnmpetugasinput.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_txtstatusbukuKeyPressed
+
+    private void txtbukukelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbukukelasKeyPressed
+        // TODO add your handling code here:
+        if(evt.getKeyCode()==evt.VK_ENTER){
+            txtstatusbuku.requestFocusInWindow();
+        }
+    }//GEN-LAST:event_txtbukukelasKeyPressed
 
     /**
      * @param args the command line arguments
@@ -608,19 +675,25 @@ public class GbMenuDataBuku extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JPanel panelBtn1;
     private javax.swing.JPanel panelIsi1;
     private javax.swing.JPanel panelJudul1;
     private javax.swing.JPanel panelLogin;
+    private javax.swing.JTextField txtbukukelas;
     private javax.swing.JTextField txtidbuku;
     private javax.swing.JTextField txtjudulbuku;
     private javax.swing.JTextField txtnmpetugasinput;
     private javax.swing.JTextField txtpenerbitoleh;
     private javax.swing.JTextField txtpenulisbuku;
     private javax.swing.JLabel txtshortid;
+    private javax.swing.JTextField txtstatusbuku;
     private javax.swing.JTextField txttahunbuku;
     // End of variables declaration//GEN-END:variables
 }

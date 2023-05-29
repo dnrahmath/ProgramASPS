@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import programasps.backend.config;
 
 /**
  *
@@ -364,7 +365,9 @@ public class DbMenuPinjamBuku extends javax.swing.JFrame {
             "tgl_peminjaman", 
             "tgl_pengembalian", 
             "id_user_peminjam",
-            "sort_id"
+            "sort_id",
+            "denda",
+            "waktu_pinjam"
         };
         
         
@@ -376,7 +379,9 @@ public class DbMenuPinjamBuku extends javax.swing.JFrame {
                                      dtf.format(now),
                                      "0",
                                      DataLogin[0][0],
-                                     "0"
+                                     "0",
+                                     "0",
+                                     config.waktuPinjam+"",
                                     };
             
             koneksiData conn = new koneksiData();
@@ -419,6 +424,7 @@ public class DbMenuPinjamBuku extends javax.swing.JFrame {
             "Penulis Buku", 
             "Penerbit Oleh", 
             "Tahun Buku", 
+            "Status Buku",
             "Sort Id"
             //"Nama petugas input"  //menghilangkan colum nama_petugas_input
         };
@@ -431,6 +437,7 @@ public class DbMenuPinjamBuku extends javax.swing.JFrame {
             "penerbit_oleh", 
             "tahun_buku", 
             "sort_id",
+            "status_buku",
             "nama_petugas_input"
         };
         

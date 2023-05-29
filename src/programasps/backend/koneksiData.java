@@ -451,9 +451,10 @@ public class koneksiData {
                 for (int i = 0; i < sqlString.length; i++) {
                     stmt.addBatch(sqlString[i]);
                 }
-                stmt.executeBatch();
+//              stmt.executeBatch();
 //              stmt.executeUpdate (sql);
-//              stmt.executeUpdate(sqlString[0]);
+                System.out.println(sqlString[0]);
+                stmt.executeUpdate(sqlString[0]);
 
                 info[0][0] = "data berhasil dieksekusi";
                 conn.close();
@@ -664,13 +665,14 @@ public class koneksiData {
             //Awal - proses pembuatan string SQL sebelum di eksekusi ---------------------------
             String[] sqlString=new String[1];
             sqlString[0] = "UPDATE "+DB_NAME+"."+nmTbl+" SET ";
+            //sqlString[0] = "UPDATE "+nmTbl+" SET ";
             
             int kBatas = listColmn.length - 1;
             for (int k = 1; k < kBatas; k++) {
                 sqlString[0] += "`"+dataAll[0][k]+"` = '"+dataAll[1][k]+"', ";
             }
             sqlString[0] += "`"+dataAll[0][kBatas]+"` = '"+dataAll[1][kBatas]+"' ";
-            sqlString[0] += "WHERE "+colDb+"="+colDbTarget;
+            sqlString[0] += "WHERE "+colDb+"="+colDbTarget+"";
             //System.out.println(sqlString);
             //Akhir - proses pembuatan string SQL sebelum di eksekusi ---------------------------
             
