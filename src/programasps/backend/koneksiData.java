@@ -397,12 +397,20 @@ public class koneksiData {
         }  
     
         
-        public static String[][] cSelectOneDef(String nmTbl,String[] listColmn,int totalArray,String colDb,String colDbs)
+        public static String[][] cSelectOneDef(String nmTbl,String[] listColmn,int totalArray,String[] colDb,String[] colDbs)
         {   
             //-------------------------------------------------------------------------
             String[] sqlString=new String[1];
-            sqlString[0] = "SELECT * FROM "+nmTbl+" WHERE "+colDb+"='"+colDbs+"'";
+            //sqlString[0] = "SELECT * FROM "+nmTbl+" WHERE "+colDb+"='"+colDbs+"'";
             
+            sqlString[0] = "SELECT * FROM "+nmTbl+" WHERE "+colDb[0]+"='"+colDbs[0]+"";
+            if(2<colDb.length){ //array[0] dihitung 1
+                for(int i=1; i<colDb.length; i++){
+                    sqlString[0] += "AND"+colDb[i]+"='"+colDbs[i]+"";
+                }
+            }
+            sqlString[0] += "'";
+
             int valKeAwal = 0;
             int valKeAkhir = totalArray;
             

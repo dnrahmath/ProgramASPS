@@ -276,7 +276,7 @@
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="txtwaktupinjam" pref="519" max="32767" attributes="0"/>
-                                  <Component id="jSpinner1" max="32767" attributes="0"/>
+                                  <Component id="Jsdenda" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="jLabel16" min="-2" pref="45" max="-2" attributes="0"/>
@@ -315,7 +315,7 @@
                               <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jSpinner1" min="-2" pref="34" max="-2" attributes="0"/>
+                              <Component id="Jsdenda" min="-2" pref="34" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -390,14 +390,8 @@
               </Events>
             </Component>
             <Component class="javax.swing.JSpinner" name="txtwaktupinjam">
-              <Events>
-                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="txtwaktupinjamStateChanged"/>
-              </Events>
             </Component>
-            <Component class="javax.swing.JSpinner" name="jSpinner1">
-              <Events>
-                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jSpinner1StateChanged"/>
-              </Events>
+            <Component class="javax.swing.JSpinner" name="Jsdenda">
             </Component>
           </SubComponents>
         </Container>

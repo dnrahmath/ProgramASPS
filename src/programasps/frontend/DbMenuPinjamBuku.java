@@ -40,6 +40,30 @@ public class DbMenuPinjamBuku extends javax.swing.JFrame {
     String[][] DataLogin;
     String[][] DataTable;
     
+    String[] CustomListColmnBuku = { 
+            "Id", 
+            "Judul Buku", 
+            "Penulis Buku", 
+            "Penerbit Oleh", 
+            "Tahun Buku",
+            "Kelas",
+            "Status Buku",
+            "System Id"
+            //"Nama petugas input"  //menghilangkan colum nama_petugas_input
+        };;
+    
+    String[] listColmnBuku= { 
+            "id_buku", 
+            "judul_buku", 
+            "penulis_buku", 
+            "penerbit_oleh", 
+            "tahun_buku", 
+            "buku_kelas",
+            "status_buku",
+            "system_id"
+//            "nama_petugas_input"
+        };
+    
     public DbMenuPinjamBuku(Color colorRGBA,Color colorRGBAForm) {
         initComponents();
         //this.setExtendedState(BaFromRegister.MAXIMIZED_BOTH);
@@ -68,40 +92,27 @@ public class DbMenuPinjamBuku extends javax.swing.JFrame {
     
     public void getTable(){
         //ComboBox Pilihan  -------
-        String CustomListColmn[]= { 
-            "Id", 
-            "Judul Buku", 
-            "Penulis Buku", 
-            "Penerbit Oleh", 
-            "Tahun Buku",
-            "Kelas",
-            "Status Buku",
-            "System Id"
-            //"Nama petugas input"  //menghilangkan colum nama_petugas_input
-        };
-        for (int i = 0; i < CustomListColmn.length; i++) {
-            JComboBox1.addItem(CustomListColmn[i]);
+        //CustomListColmnBuku 
+        for (int i = 0; i < CustomListColmnBuku.length; i++) {
+            if(i != 6){
+                JComboBox1.addItem(CustomListColmnBuku[i]);
+            }
         }
         //-------------------------
         
         
-        String listColmn[]= { 
-            "id_buku", 
-            "judul_buku", 
-            "penulis_buku", 
-            "penerbit_oleh", 
-            "tahun_buku", 
-            "buku_kelas",
-            "status_buku",
-            "system_id",
-            "nama_petugas_input"
-        };
+        //listColmnBuku
         
         koneksiData conn = new koneksiData();
-        DataTable = conn.cSelectAll("tbl_buku",listColmn);
+        String[] option = {"status_buku"};
+        String[] search = {"TIDAK DIPINJAM"};
+        
+        DataTable = koneksiData.cSelectOneDef("tbl_buku",listColmnBuku,1000,option,search);
         
         DefaultTableModel model = (DefaultTableModel)tblPinjam.getModel();
-        model.setDataVector(DataTable, CustomListColmn);
+        model.setDataVector(DataTable, CustomListColmnBuku);
+        
+        
         
         
         tblPinjam.getColumnModel().getColumn(0).setMinWidth(10);
@@ -365,9 +376,9 @@ public class DbMenuPinjamBuku extends javax.swing.JFrame {
             "tgl_peminjaman", 
             "tgl_pengembalian", 
             "id_user_peminjam",
-            "system_id",
             "denda",
-            "waktu_pinjam"
+            "waktu_pinjam",
+            "system_id"
         };
         
         
@@ -380,12 +391,24 @@ public class DbMenuPinjamBuku extends javax.swing.JFrame {
                                      "0",
                                      DataLogin[0][0],
                                      "0",
-                                     "0",
                                      config.waktuPinjam+"",
+                                     model.getValueAt(selectedRowIndex, 7).toString()
                                     };
             
             koneksiData conn = new koneksiData();
             conn.cInsert("tbl_pinjam",listColmn,listColmnRow);
+            
+            String[] listColmnBukuRow= { 
+                model.getValueAt(selectedRowIndex, 0).toString(), 
+                model.getValueAt(selectedRowIndex, 1).toString(), 
+                model.getValueAt(selectedRowIndex, 2).toString(), 
+                model.getValueAt(selectedRowIndex, 3).toString(), 
+                model.getValueAt(selectedRowIndex, 4).toString(), 
+                model.getValueAt(selectedRowIndex, 5).toString(),
+                "DIPINJAM",
+                model.getValueAt(selectedRowIndex, 7).toString()
+            };
+            koneksiData.cUpdate("tbl_buku",listColmnBuku,listColmnBukuRow,"system_id",listColmnBukuRow[7]);
             
             JOptionPane.showMessageDialog(
                         null,
@@ -410,61 +433,65 @@ public class DbMenuPinjamBuku extends javax.swing.JFrame {
         tblPinjam.getColumnModel().getColumn(4).setMaxWidth(60);
         tblPinjam.getColumnModel().getColumn(5).setMinWidth(10);
         tblPinjam.getColumnModel().getColumn(5).setMaxWidth(40);
+//        tblPinjam.getColumnModel().getColumn(6).setMinWidth(10);
+//        tblPinjam.getColumnModel().getColumn(6).setMaxWidth(100);
         tblPinjam.getColumnModel().getColumn(6).setMinWidth(10);
-        tblPinjam.getColumnModel().getColumn(6).setMaxWidth(100);
-        tblPinjam.getColumnModel().getColumn(7).setMinWidth(10);
-        tblPinjam.getColumnModel().getColumn(7).setMaxWidth(40);
+        tblPinjam.getColumnModel().getColumn(6).setMaxWidth(40);
     }//GEN-LAST:event_btnPinjamBukuActionPerformed
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
         // TODO add your handling code here:
-        String CustomListColmn[]= { 
-            "Id", 
-            "Judul Buku", 
-            "Penulis Buku", 
-            "Penerbit Oleh", 
-            "Tahun Buku", 
-            "Status Buku",
-            "System Id"
-            //"Nama petugas input"  //menghilangkan colum nama_petugas_input
-        };
+//        String CustomListColmn[]= { 
+//            "Id", 
+//            "Judul Buku", 
+//            "Penulis Buku", 
+//            "Penerbit Oleh", 
+//            "Tahun Buku",
+//            "Kelas",
+////            "Status Buku",
+//            "System Id"
+//            //"Nama petugas input"  //menghilangkan colum nama_petugas_input
+//        };
         //-------------------------------------------
         
-        String listColmn[]= { 
-            "id_buku", 
-            "judul_buku", 
-            "penulis_buku", 
-            "penerbit_oleh", 
-            "tahun_buku", 
-            "system_id",
-            "status_buku",
-            "nama_petugas_input"
-        };
+//        String listColmn[]= { 
+//            "id_buku", 
+//            "judul_buku", 
+//            "penulis_buku", 
+//            "penerbit_oleh", 
+//            "tahun_buku", 
+//            "buku_kelas",
+////            "status_buku",
+//            "system_id",
+//            "nama_petugas_input"
+//        };
         
         JTextField txtSearchF = (JTextField) evt.getSource();
         
         
         int optionIndex = JComboBox1.getSelectedIndex();
-        String option = listColmn[optionIndex];
-        //System.out.println("dipilih : "+option);
+        if(optionIndex == 6){
+            optionIndex = 7;
+        }
         
-        String search = txtSearchF.getText();
+        String[] option = {listColmnBuku[optionIndex],"status_buku"};
+        String[] search = {txtSearchF.getText(),"TIDAK DIPINJAM"};
         
-        
-        DataTable = koneksiData.cSelectOneDef("tbl_buku",listColmn,100,option,search);
+        DataTable = koneksiData.cSelectOneDef("tbl_buku",listColmnBuku,1000,option,search);
         DefaultTableModel model = (DefaultTableModel)tblPinjam.getModel();
         
         
         String dataKosong[][]= {{}};
         if(!"".equals(txtSearchF.getText())){
             if("err".equals(DataTable[0][0]) ){
-                model.setDataVector(dataKosong, CustomListColmn);
+                model.setDataVector(dataKosong, CustomListColmnBuku);
             }else{
-                model.setDataVector(DataTable, CustomListColmn);
+                model.setDataVector(DataTable, CustomListColmnBuku);
             }
         }else{
-            model.setDataVector(dataKosong, CustomListColmn);
+            model.setDataVector(dataKosong, CustomListColmnBuku);
         }
+        
         
         tblPinjam.getColumnModel().getColumn(0).setMinWidth(10);
         tblPinjam.getColumnModel().getColumn(0).setMaxWidth(70);

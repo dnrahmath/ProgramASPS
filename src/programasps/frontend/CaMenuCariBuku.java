@@ -306,10 +306,10 @@ public class CaMenuCariBuku extends javax.swing.JFrame {
         
         
         int optionIndex = JComboBox1.getSelectedIndex();
-        String option = listColmn[optionIndex];
+        String[] option = {listColmn[optionIndex]};
         //System.out.println("dipilih : "+option);
         
-        String search = txtSearchF.getText();
+        String[] search = {txtSearchF.getText()};
         
         
         DataTable = koneksiData.cSelectOneDef("tbl_buku",listColmn,1000,option,search);

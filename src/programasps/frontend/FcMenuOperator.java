@@ -46,7 +46,7 @@ public class FcMenuOperator extends javax.swing.JFrame {
         panelBtn3.setVisible(true);
         
         txtwaktupinjam.setValue(config.waktuPinjam);
-        jSpinner1.setValue(config.nominalDendaOneDay);
+        Jsdenda.setValue(config.nominalDendaOneDay);
         funcSaveOperator();
         
         //-------------------------------------
@@ -78,9 +78,9 @@ public class FcMenuOperator extends javax.swing.JFrame {
     public void funcSaveOperator(){
         int nominalVar = 0;
         int waktuPinjamVar = 0;
-        nominalVar = (int) jSpinner1.getValue();
+        nominalVar = (int) Jsdenda.getValue();
         waktuPinjamVar = (int) txtwaktupinjam.getValue();
-        config.nominalDendaOneDay = (int) jSpinner1.getValue();
+        config.nominalDendaOneDay = (int) Jsdenda.getValue();
         config.waktuPinjam = (int) txtwaktupinjam.getValue();
         if(nominalVar == 0 || waktuPinjamVar == 0){
             JOptionPane.showMessageDialog(
@@ -119,7 +119,7 @@ public class FcMenuOperator extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         btnSaveOperator = new javax.swing.JButton();
         txtwaktupinjam = new javax.swing.JSpinner();
-        jSpinner1 = new javax.swing.JSpinner();
+        Jsdenda = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -260,18 +260,6 @@ public class FcMenuOperator extends javax.swing.JFrame {
             }
         });
 
-        txtwaktupinjam.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                txtwaktupinjamStateChanged(evt);
-            }
-        });
-
-        jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jSpinner1StateChanged(evt);
-            }
-        });
-
         javax.swing.GroupLayout panelIsi1Layout = new javax.swing.GroupLayout(panelIsi1);
         panelIsi1.setLayout(panelIsi1Layout);
         panelIsi1Layout.setHorizontalGroup(
@@ -290,7 +278,7 @@ public class FcMenuOperator extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtwaktupinjam, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
-                            .addComponent(jSpinner1))
+                            .addComponent(Jsdenda))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38)
@@ -320,7 +308,7 @@ public class FcMenuOperator extends javax.swing.JFrame {
                             .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(58, 58, 58))
                     .addGroup(panelIsi1Layout.createSequentialGroup()
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(Jsdenda, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -413,15 +401,6 @@ public class FcMenuOperator extends javax.swing.JFrame {
         funcSaveOperator();
     }//GEN-LAST:event_btnSaveOperatorActionPerformed
 
-    private void txtwaktupinjamStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_txtwaktupinjamStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtwaktupinjamStateChanged
-
-    private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
-        // TODO add your handling code here:
-        funcSaveOperator();
-    }//GEN-LAST:event_jSpinner1StateChanged
-
     /**
      * @param args the command line arguments
      */
@@ -466,6 +445,7 @@ public class FcMenuOperator extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSpinner Jsdenda;
     private javax.swing.JButton btnKembalikan;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnPinjam;
@@ -478,7 +458,6 @@ public class FcMenuOperator extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JPanel panelBtn2;
     private javax.swing.JPanel panelBtn3;
     private javax.swing.JPanel panelIsi1;

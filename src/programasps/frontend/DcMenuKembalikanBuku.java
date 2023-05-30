@@ -42,6 +42,30 @@ public class DcMenuKembalikanBuku extends javax.swing.JFrame {
     String[][] DataLogin;
     String[][] DataTable;
     
+    String[] CustomListColmnBuku = { 
+            "Id", 
+            "Judul Buku", 
+            "Penulis Buku", 
+            "Penerbit Oleh", 
+            "Tahun Buku",
+            "Kelas",
+//          "Status Buku",
+            "System Id"
+            //"Nama petugas input"  //menghilangkan colum nama_petugas_input
+        };;
+    
+    String[] listColmnBuku= { 
+            "id_buku", 
+            "judul_buku", 
+            "penulis_buku", 
+            "penerbit_oleh", 
+            "tahun_buku", 
+            "buku_kelas",
+//          "status_buku",
+            "system_id",
+            "nama_petugas_input"
+        };
+    
     public DcMenuKembalikanBuku(Color colorRGBA,Color colorRGBAForm) {
         initComponents();
         //this.setExtendedState(BaFromRegister.MAXIMIZED_BOTH);
@@ -77,7 +101,8 @@ public class DcMenuKembalikanBuku extends javax.swing.JFrame {
             "tgl pengembalian", 
             "id user peminjam",
             "denda",
-            "waktu pinjam (hari)"
+            "waktu pinjam (hari)",
+            "system id"
         };
         for (int i = 0; i < CustomListColmn.length; i++) {
             JComboBox1.addItem(CustomListColmn[i]);
@@ -94,13 +119,16 @@ public class DcMenuKembalikanBuku extends javax.swing.JFrame {
             "tgl_pengembalian", 
             "id_user_peminjam",
             "denda",
-            "waktu_pinjam"
+            "waktu_pinjam",
+            "system_id"
         };
         
         
         
         //koneksiData conn = new koneksiData();
-        DataTable = koneksiData.cSelectOneDef("tbl_pinjam",listColmn,1000,"id_user_peminjam",DataLogin[0][0]);
+        String[] option = {"id_user_peminjam"};
+        String[] search = {DataLogin[0][0]};
+        DataTable = koneksiData.cSelectOneDef("tbl_pinjam",listColmn,1000,option,search);
         
         
         //-------------------------------------------------------------------------------
@@ -143,6 +171,8 @@ public class DcMenuKembalikanBuku extends javax.swing.JFrame {
         tblPinjam.getColumnModel().getColumn(7).setMaxWidth(60);
         tblPinjam.getColumnModel().getColumn(8).setMinWidth(10);
         tblPinjam.getColumnModel().getColumn(8).setMaxWidth(60);
+        tblPinjam.getColumnModel().getColumn(9).setMinWidth(10);
+        tblPinjam.getColumnModel().getColumn(9).setMaxWidth(40);
     
     }
     
@@ -431,7 +461,8 @@ public class DcMenuKembalikanBuku extends javax.swing.JFrame {
             "tgl_pengembalian", 
             "id_user_peminjam",
             "denda",
-            "waktu_pinjam"
+            "waktu_pinjam",
+            "system_id"
         };
         
         
@@ -446,6 +477,7 @@ public class DcMenuKembalikanBuku extends javax.swing.JFrame {
                                      "0",
                                      "0",
                                      DataTable[0][8]+"",
+                                     model.getValueAt(selectedRowIndex, 9).toString(),
                                     };
             
             //-------------------------------------------------------------------------------
@@ -468,6 +500,14 @@ public class DcMenuKembalikanBuku extends javax.swing.JFrame {
             
             koneksiData conn = new koneksiData();
             if(nominalDendaRp.equals("0")){ 
+                
+                //mngupdate 1 colm pada tbl_buku
+                String[] ColmToUpdate = {"status_buku"};
+                String[] ColmValueToUpdate = {"TIDAK DIPINJAM"};
+                String[] optionBuku = {"system_id"};
+                String[] searchBuku = {model.getValueAt(selectedRowIndex, 9).toString()};
+                koneksiData.cUpdate("tbl_buku",ColmToUpdate,ColmValueToUpdate,optionBuku[0],searchBuku[0]);
+                
                 conn.cUpdate("tbl_pinjam",listColmn,listColmnRow,listColmn[0],listColmnRow[0]);
                 JOptionPane.showMessageDialog(
                         null,
@@ -531,6 +571,8 @@ public class DcMenuKembalikanBuku extends javax.swing.JFrame {
         tblPinjam.getColumnModel().getColumn(6).setMaxWidth(70);
         tblPinjam.getColumnModel().getColumn(8).setMinWidth(10);
         tblPinjam.getColumnModel().getColumn(8).setMaxWidth(60);
+        tblPinjam.getColumnModel().getColumn(9).setMinWidth(10);
+        tblPinjam.getColumnModel().getColumn(9).setMaxWidth(40);
         
     }//GEN-LAST:event_btnKembalikanBukuActionPerformed
 
@@ -565,11 +607,9 @@ public class DcMenuKembalikanBuku extends javax.swing.JFrame {
         
         
         int optionIndex = JComboBox1.getSelectedIndex();
-        String option = listColmn[optionIndex];
-        //System.out.println("dipilih : "+option);
         
-        String search = txtSearchF.getText();
-        
+        String[] option = {listColmn[optionIndex]};
+        String[] search = {txtSearchF.getText()};
         
         DataTable = koneksiData.cSelectOneDef("tbl_pinjam",listColmn,1000,option,search);
         //-------------------------------------------------------------------------------
@@ -617,6 +657,8 @@ public class DcMenuKembalikanBuku extends javax.swing.JFrame {
         tblPinjam.getColumnModel().getColumn(6).setMaxWidth(70);
         tblPinjam.getColumnModel().getColumn(8).setMinWidth(10);
         tblPinjam.getColumnModel().getColumn(8).setMaxWidth(60);
+        tblPinjam.getColumnModel().getColumn(9).setMinWidth(10);
+        tblPinjam.getColumnModel().getColumn(9).setMaxWidth(40);
         
         
     }//GEN-LAST:event_txtSearchKeyReleased

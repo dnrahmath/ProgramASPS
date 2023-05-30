@@ -458,11 +458,9 @@ public class FbPilihUser extends javax.swing.JFrame {
         
         
         int optionIndex = JComboBox1.getSelectedIndex();
-        String option = listColmn[optionIndex];
-        //System.out.println("dipilih : "+option);
         
-        String search = txtSearchF.getText();
-        
+        String[] option = {listColmn[optionIndex]};
+        String[] search = {txtSearchF.getText()};
         
         DataTable = koneksiData.cSelectOneDef("tbl_users",listColmn,10000,option,search);
         DefaultTableModel model = (DefaultTableModel)tblUser.getModel();

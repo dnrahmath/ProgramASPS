@@ -110,8 +110,11 @@ public class CbMenuUtama extends javax.swing.JFrame {
             "waktu_pinjam"
         };
         
+        
+        String[] option = {"id_user_peminjam"};
+        String[] search = {DataLogin[0][0]};
         koneksiData conn = new koneksiData();
-        DataTable = koneksiData.cSelectOneDef("tbl_pinjam",listColmn,1000,"id_user_peminjam",DataLogin[0][0]);
+        DataTable = koneksiData.cSelectOneDef("tbl_pinjam",listColmn,1000,option,search);
         
         //-------------------------------------------------------------------------------
         for (int i = 0; i < DataTable.length ; i++) {
@@ -648,10 +651,8 @@ public class CbMenuUtama extends javax.swing.JFrame {
         JTextField txtSearchF = (JTextField) evt.getSource();
 
         int optionIndex = JComboBox1.getSelectedIndex();
-        String option = listColmn[optionIndex];
-        //System.out.println("dipilih : "+option);
-
-        String search = txtSearchF.getText();
+        String[] option = {listColmn[optionIndex]};
+        String[] search = {txtSearchF.getText()};
 
         DataTable = koneksiData.cSelectOneDef("tbl_pinjam",listColmn,1000,option,search);
         //-------------------------------------------------------------------------------

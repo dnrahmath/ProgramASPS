@@ -479,10 +479,6 @@ CREATE TABLE `tbl_pinjam` (
 -- Dumping data for table `tbl_pinjam`
 --
 
-INSERT INTO `tbl_pinjam` (`id_pinjam`, `id_buku`, `judul_buku`, `status_buku`, `tgl_peminjaman`, `tgl_pengembalian`, `id_user_peminjam`, `denda`, `waktu_pinjam`, `system_id`) VALUES
-(1, 26, 'ILMU PENGETAHUAN SOSIAL', 'DIPINJAM', '2023/04/18 09:23:32', '0', '2', 13500, 14, 0),
-(2, 25, 'ILMU PENGETAHUAN SOSIAL', 'DIKEMBALIKAN', '2023/05/29 09:49:57', '2023/05/29 09:53:39', '2', 0, 0, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -588,7 +584,7 @@ ALTER TABLE `tbl_kotaksaran`
 -- AUTO_INCREMENT for table `tbl_pinjam`
 --
 ALTER TABLE `tbl_pinjam`
-  MODIFY `id_pinjam` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_pinjam` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1;
 
 --
 -- AUTO_INCREMENT for table `tbl_tamu`

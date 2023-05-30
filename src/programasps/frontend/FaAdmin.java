@@ -205,6 +205,8 @@ public class FaAdmin extends javax.swing.JFrame {
             tblUtama.getColumnModel().getColumn(7).setMaxWidth(60);
             tblUtama.getColumnModel().getColumn(8).setMinWidth(10);
             tblUtama.getColumnModel().getColumn(8).setMaxWidth(60);
+            tblUtama.getColumnModel().getColumn(9).setMinWidth(10);
+            tblUtama.getColumnModel().getColumn(9).setMaxWidth(60);
         }else if("tbl_kotakSaran".equals(ModeData)){
             tblUtama.getColumnModel().getColumn(0).setMinWidth(10);
             tblUtama.getColumnModel().getColumn(0).setMaxWidth(30);
@@ -386,7 +388,7 @@ public class FaAdmin extends javax.swing.JFrame {
         btnInsert.setText("OPERATOR PEMINJAMAN DAN PENGEMBALIAN BUKU");
         btnUpdate.setVisible(false);
         //ComboBox Pilihan  -------
-        CustomListColmn = new String[9];
+        CustomListColmn = new String[10];
         CustomListColmn[0] = "Id Pinjam";
         CustomListColmn[1] = "Id Buku";
         CustomListColmn[2] = "Judul Buku";
@@ -396,6 +398,7 @@ public class FaAdmin extends javax.swing.JFrame {
         CustomListColmn[6] = "Usr";
         CustomListColmn[7] = "Denda";
         CustomListColmn[8] = "Waktu Pinjam (hari)";
+        CustomListColmn[9] = "System Id";
            
         JComboBox1.removeAllItems();
         for (int i = 0; i < CustomListColmn.length; i++) {
@@ -406,7 +409,7 @@ public class FaAdmin extends javax.swing.JFrame {
             
         
         //Table get----------------
-        listColmn = new String[9];
+        listColmn = new String[10];
         listColmn[0] = "id_pinjam";
         listColmn[1] = "id_buku";
         listColmn[2] = "judul_buku";
@@ -416,6 +419,7 @@ public class FaAdmin extends javax.swing.JFrame {
         listColmn[6] = "id_user_peminjam";
         listColmn[7] = "denda";
         listColmn[8] = "waktu_pinjam";
+        listColmn[9] = "system_id";
         
         
         koneksiData conn = new koneksiData();
@@ -985,10 +989,10 @@ public class FaAdmin extends javax.swing.JFrame {
 
         //---
         int optionIndex = JComboBox1.getSelectedIndex();
-        String option = listColmn[optionIndex];
+        String[] option = {listColmn[optionIndex]};
 
         JTextField txtSearchF = (JTextField) evt.getSource();
-        String search = txtSearchF.getText();
+        String[] search = {txtSearchF.getText()};
 
         //nama tabel diambil dari variabel ModeData
         DataTable = koneksiData.cSelectOneDef(ModeData,listColmn,1000,option,search);
