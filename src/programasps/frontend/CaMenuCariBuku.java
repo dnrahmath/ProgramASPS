@@ -52,7 +52,7 @@ public class CaMenuCariBuku extends javax.swing.JFrame {
             "Tahun Buku",
             "Kelas",
             "Status Buku",
-            "Sort Id"
+            "System Id"
             //"Nama petugas input"  //menghilangkan colum nama_petugas_input
         };
         for (int i = 0; i < CustomListColmn.length; i++) {
@@ -69,7 +69,7 @@ public class CaMenuCariBuku extends javax.swing.JFrame {
             "tahun_buku", 
             "buku_kelas",
             "status_buku",
-            "sort_id",
+            "system_id",
             "nama_petugas_input"
         };
         
@@ -285,7 +285,7 @@ public class CaMenuCariBuku extends javax.swing.JFrame {
             "Tahun Buku",
             "Kelas",
             "Status Buku",
-            "Sort Id"
+            "System Id"
             //"Nama petugas input"  //menghilangkan colum nama_petugas_input
         };
         //-------------------------------------------
@@ -298,7 +298,7 @@ public class CaMenuCariBuku extends javax.swing.JFrame {
             "tahun_buku", 
             "buku_kelas",
             "status_buku",
-            "sort_id",
+            "system_id",
             "nama_petugas_input"
         };
         

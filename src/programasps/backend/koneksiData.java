@@ -563,11 +563,11 @@ public class koneksiData {
             
             //Awal - proses pembuatan string SQL sebelum di eksekusi ---------------------------
             String[] sqlString=new String[1];
-//            sqlString[0] = "SET @sortid=0;";
-//            sqlString[1] = "SELECT @sortid:=`sort_id` FROM "+DB_NAME+"."+nmTbl+" ORDER BY `sort_id` DESC LIMIT 1;";
-//            sqlString[2] = "SET @sort_id:=@sort_id+0;";
+//            sqlString[0] = "SET @systemid=0;";
+//            sqlString[1] = "SELECT @systemid:=`system_id` FROM "+DB_NAME+"."+nmTbl+" ORDER BY `system_id` DESC LIMIT 1;";
+//            sqlString[2] = "SET @system_id:=@system_id+0;";
 //            sqlString[3] = "SET @wherenot:=0;";
-//            sqlString[4] = "SELECT @wherenot:=`sort_id` FROM "+DB_NAME+"."+nmTbl+" WHERE sort_id=@sortid;"; //untuk WHERE NOT
+//            sqlString[4] = "SELECT @wherenot:=`system_id` FROM "+DB_NAME+"."+nmTbl+" WHERE system_id=@systemid;"; //untuk WHERE NOT
 //            sqlString[5] = "SET @wherenot:=@wherenot+0;";
             sqlString[lastindex] = "INSERT INTO "+DB_NAME+"."+nmTbl+" (`";
             
@@ -584,7 +584,7 @@ public class koneksiData {
             }
             sqlString[lastindex] += dataAll[1][kBatas];
             sqlString[lastindex] += "');";
-//            sqlString[lastindex] += "') WHERE NOT EXISTS sort_id=@wherenot;";
+//            sqlString[lastindex] += "') WHERE NOT EXISTS system_id=@wherenot;";
                     
             
             System.out.println(sqlString[lastindex]);

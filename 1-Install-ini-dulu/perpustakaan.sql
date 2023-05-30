@@ -36,14 +36,14 @@ CREATE TABLE `tbl_buku` (
   `buku_kelas` varchar(50) NOT NULL,
   `status_buku` varchar(50) DEFAULT 'TIDAK DIPINJAM',
   `nama_petugas_input` varchar(50) NOT NULL,
-  `sort_id` int(255) NOT NULL
+  `system_id` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `tbl_buku`
 --
 
-INSERT INTO `tbl_buku` (`id_buku`, `judul_buku`, `penulis_buku`, `penerbit_oleh`, `tahun_buku`, `buku_kelas`, `status_buku`, `nama_petugas_input`, `sort_id`) VALUES
+INSERT INTO `tbl_buku` (`id_buku`, `judul_buku`, `penulis_buku`, `penerbit_oleh`, `tahun_buku`, `buku_kelas`, `status_buku`, `nama_petugas_input`, `system_id`) VALUES
 (11, 'ILMU PENGETAHUAN SOSIAL', 'SARI OKTAFIANA, DKK.', 'PUSAT KURIKULUM DAN PERBUKUAN', '2021', '--', 'TIDAK DIPINJAM', 'admin', 1),
 (28, 'ILMU PENGETAHUAN SOSIAL', 'SARI OKTAFIANA, DKK.', 'PUSAT KURIKULUM DAN PERBUKUAN', '2021', '--', 'TIDAK DIPINJAM', 'admin', 2),
 (9, 'ILMU PENGETAHUAN SOSIAL', 'SARI OKTAFIANA, DKK.', 'PUSAT KURIKULUM DAN PERBUKUAN', '2021', '--', 'TIDAK DIPINJAM', 'admin', 3),
@@ -446,14 +446,14 @@ CREATE TABLE `tbl_kotaksaran` (
   `nama` varchar(50) NOT NULL,
   `saran` varchar(255) NOT NULL,
   `tanggal` varchar(255) NOT NULL,
-  `sort_id` int(255) DEFAULT 0
+  `system_id` int(255) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `tbl_kotaksaran`
 --
 
-INSERT INTO `tbl_kotaksaran` (`id`, `nama`, `saran`, `tanggal`, `sort_id`) VALUES
+INSERT INTO `tbl_kotaksaran` (`id`, `nama`, `saran`, `tanggal`, `system_id`) VALUES
 (1, 'arif078', 'terimakasih atas bukunya', '2023/05/29 09:53:46', 0);
 
 -- --------------------------------------------------------
@@ -472,14 +472,14 @@ CREATE TABLE `tbl_pinjam` (
   `id_user_peminjam` varchar(50) DEFAULT 'BELUM ADA',
   `denda` int(255) DEFAULT 0,
   `waktu_pinjam` int(255) DEFAULT 0,
-  `sort_id` int(255) DEFAULT 0
+  `system_id` int(255) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `tbl_pinjam`
 --
 
-INSERT INTO `tbl_pinjam` (`id_pinjam`, `id_buku`, `judul_buku`, `status_buku`, `tgl_peminjaman`, `tgl_pengembalian`, `id_user_peminjam`, `denda`, `waktu_pinjam`, `sort_id`) VALUES
+INSERT INTO `tbl_pinjam` (`id_pinjam`, `id_buku`, `judul_buku`, `status_buku`, `tgl_peminjaman`, `tgl_pengembalian`, `id_user_peminjam`, `denda`, `waktu_pinjam`, `system_id`) VALUES
 (1, 26, 'ILMU PENGETAHUAN SOSIAL', 'DIPINJAM', '2023/04/18 09:23:32', '0', '2', 13500, 14, 0),
 (2, 25, 'ILMU PENGETAHUAN SOSIAL', 'DIKEMBALIKAN', '2023/05/29 09:49:57', '2023/05/29 09:53:39', '2', 0, 0, 0);
 
@@ -495,14 +495,14 @@ CREATE TABLE `tbl_tamu` (
   `asal` varchar(255) NOT NULL,
   `catatan` varchar(255) NOT NULL,
   `tanggal` varchar(255) NOT NULL,
-  `sort_id` int(255) DEFAULT 0
+  `system_id` int(255) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `tbl_tamu`
 --
 
-INSERT INTO `tbl_tamu` (`id`, `nama`, `asal`, `catatan`, `tanggal`, `sort_id`) VALUES
+INSERT INTO `tbl_tamu` (`id`, `nama`, `asal`, `catatan`, `tanggal`, `system_id`) VALUES
 (1, 'arif', 'X', 'berkunjung', '2023/05/29 09:52:06', 0);
 
 -- --------------------------------------------------------
@@ -523,14 +523,14 @@ CREATE TABLE `tbl_users` (
   `no_tlp` varchar(25) NOT NULL,
   `agama` varchar(25) NOT NULL,
   `alamat` varchar(255) NOT NULL,
-  `sort_id` int(255) DEFAULT 0
+  `system_id` int(255) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `tbl_users`
 --
 
-INSERT INTO `tbl_users` (`id`, `nama`, `email`, `password`, `noid`, `peran`, `terakhir_login`, `jenis_kelamin`, `no_tlp`, `agama`, `alamat`, `sort_id`) VALUES
+INSERT INTO `tbl_users` (`id`, `nama`, `email`, `password`, `noid`, `peran`, `terakhir_login`, `jenis_kelamin`, `no_tlp`, `agama`, `alamat`, `system_id`) VALUES
 (1, 'admin', 'admin@email.com', 'admin', '201943500000', 'ADMIN', '2023/05/15 22:15:52', 'LAKI-LAKI', '088212789', '-', 'J. Swadaya II No.30, Tanjung Barat, Jagakarsa, Jakarta Selatan, DKI Jakarta', NULL),
 (2, 'arif078', 'arif', 'arif', 'mbb123', 'SISWA', '2023/05/15 22:15:52', 'LAKI-LAKI', '087956', '', '', 0);
 
@@ -542,7 +542,7 @@ INSERT INTO `tbl_users` (`id`, `nama`, `email`, `password`, `noid`, `peran`, `te
 -- Indexes for table `tbl_buku`
 --
 ALTER TABLE `tbl_buku`
-  ADD PRIMARY KEY (`sort_id`);
+  ADD PRIMARY KEY (`system_id`);
 
 --
 -- Indexes for table `tbl_kotaksaran`
@@ -576,7 +576,7 @@ ALTER TABLE `tbl_users`
 -- AUTO_INCREMENT for table `tbl_buku`
 --
 ALTER TABLE `tbl_buku`
-  MODIFY `sort_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=391;
+  MODIFY `system_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=391;
 
 --
 -- AUTO_INCREMENT for table `tbl_kotaksaran`

@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JOptionPane;
+import programasps.backend.config;
 
 /**
  *
@@ -20,9 +21,6 @@ public class FcMenuOperator extends javax.swing.JFrame {
     /**
      * Creates new form AaGuestPanel
      */
-    
-    public static int waktuPinjam = 7;
-    public static int nominalDendaOneDay = 500;
     
     //colors background
     Color colorBackground;
@@ -47,8 +45,9 @@ public class FcMenuOperator extends javax.swing.JFrame {
         panelBtn2.setVisible(true);
         panelBtn3.setVisible(true);
         
-        txtwaktupinjam.setValue(waktuPinjam);
-        txtnominal.setValue(nominalDendaOneDay);
+        txtwaktupinjam.setValue(config.waktuPinjam);
+        jSpinner1.setValue(config.nominalDendaOneDay);
+        funcSaveOperator();
         
         //-------------------------------------
         //panelBtn2.setSize(680,440);
@@ -66,9 +65,8 @@ public class FcMenuOperator extends javax.swing.JFrame {
     }
     
     public void setValue(){
-        jLJudulSelamatDatang.setText("Selamat datang, "+DataLogin[0][1]); //nama
-        txtwaktupinjam.setValue(waktuPinjam);
-        txtnominal.setValue(nominalDendaOneDay);
+        jLJudulSelamatDatang.setText("Operator untuk user :  "+DataLogin[0][1]); //nama
+        
         if( "ADMIN".equals(DataLogin[0][5]) ){ //peran
             //JIKA ADMIN
         }else{
@@ -77,19 +75,21 @@ public class FcMenuOperator extends javax.swing.JFrame {
     }
     
     
-    
     public void funcSaveOperator(){
-        int nominalVar = (int) txtnominal.getValue();
-        int waktuPinjamVar = (int) txtwaktupinjam.getValue();
-        if( nominalVar != 0 && waktuPinjamVar != 0){
-            nominalDendaOneDay = (int) txtnominal.getValue();
-            waktuPinjam = (int) txtwaktupinjam.getValue();
-        }else if( nominalVar == 0 || waktuPinjamVar == 0){
+        int nominalVar = 0;
+        int waktuPinjamVar = 0;
+        nominalVar = (int) jSpinner1.getValue();
+        waktuPinjamVar = (int) txtwaktupinjam.getValue();
+        config.nominalDendaOneDay = (int) jSpinner1.getValue();
+        config.waktuPinjam = (int) txtwaktupinjam.getValue();
+        if(nominalVar == 0 || waktuPinjamVar == 0){
             JOptionPane.showMessageDialog(
                         null,
-                        "Textfield Tidak Boleh Kosong !!",
+                        "Textfield Tidak Boleh Nol dan Minus !!",
                         "Message", JOptionPane.INFORMATION_MESSAGE);
-        }else{}
+        }else{
+            
+        }
     }
 
     /**
@@ -119,7 +119,7 @@ public class FcMenuOperator extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         btnSaveOperator = new javax.swing.JButton();
         txtwaktupinjam = new javax.swing.JSpinner();
-        txtnominal = new javax.swing.JSpinner();
+        jSpinner1 = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -266,9 +266,9 @@ public class FcMenuOperator extends javax.swing.JFrame {
             }
         });
 
-        txtnominal.addChangeListener(new javax.swing.event.ChangeListener() {
+        jSpinner1.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                txtnominalStateChanged(evt);
+                jSpinner1StateChanged(evt);
             }
         });
 
@@ -289,8 +289,8 @@ public class FcMenuOperator extends javax.swing.JFrame {
                             .addComponent(jLabel19))
                         .addGap(18, 18, 18)
                         .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtnominal, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
-                            .addComponent(txtwaktupinjam))
+                            .addComponent(txtwaktupinjam, javax.swing.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                            .addComponent(jSpinner1))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38)
@@ -298,7 +298,7 @@ public class FcMenuOperator extends javax.swing.JFrame {
                     .addGroup(panelIsi1Layout.createSequentialGroup()
                         .addGap(329, 329, 329)
                         .addComponent(jLabel15)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
         panelIsi1Layout.setVerticalGroup(
             panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,12 +312,16 @@ public class FcMenuOperator extends javax.swing.JFrame {
                     .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSaveOperator, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtwaktupinjam, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtnominal, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51))
+                .addGap(18, 18, 18)
+                .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelIsi1Layout.createSequentialGroup()
+                        .addGroup(panelIsi1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(58, 58, 58))
+                    .addGroup(panelIsi1Layout.createSequentialGroup()
+                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout panelLoginLayout = new javax.swing.GroupLayout(panelLogin);
@@ -411,13 +415,12 @@ public class FcMenuOperator extends javax.swing.JFrame {
 
     private void txtwaktupinjamStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_txtwaktupinjamStateChanged
         // TODO add your handling code here:
-        funcSaveOperator();
     }//GEN-LAST:event_txtwaktupinjamStateChanged
 
-    private void txtnominalStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_txtnominalStateChanged
+    private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
         // TODO add your handling code here:
         funcSaveOperator();
-    }//GEN-LAST:event_txtnominalStateChanged
+    }//GEN-LAST:event_jSpinner1StateChanged
 
     /**
      * @param args the command line arguments
@@ -475,12 +478,12 @@ public class FcMenuOperator extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JSpinner jSpinner1;
     private javax.swing.JPanel panelBtn2;
     private javax.swing.JPanel panelBtn3;
     private javax.swing.JPanel panelIsi1;
     private javax.swing.JPanel panelJudul1;
     private javax.swing.JPanel panelLogin;
-    private javax.swing.JSpinner txtnominal;
     private javax.swing.JSpinner txtwaktupinjam;
     // End of variables declaration//GEN-END:variables
 }

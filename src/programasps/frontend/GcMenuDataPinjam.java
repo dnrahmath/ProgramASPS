@@ -95,7 +95,7 @@ public class GcMenuDataPinjam extends javax.swing.JFrame {
             "penulis_buku", 
             "penerbit_oleh", 
             "tahun_buku", 
-            "sort_id",
+            "system_id",
             "nama_petugas_input"
         };
 

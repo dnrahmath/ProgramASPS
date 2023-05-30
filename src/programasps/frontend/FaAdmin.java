@@ -139,7 +139,7 @@ public class FaAdmin extends javax.swing.JFrame {
             listColmn[5] = "buku_kelas";
             listColmn[6] = "status_buku";
             listColmn[7] = "nama_petugas_input";
-            listColmn[8] = "sort_id";
+            listColmn[8] = "system_id";
         }else if("tbl_pinjam".equals(ModeData)){ 
             listColmn = new String[9];
             listColmn[0] = "id_pinjam";
@@ -345,7 +345,7 @@ public class FaAdmin extends javax.swing.JFrame {
         CustomListColmn[5] = "Kelas";
         CustomListColmn[6] = "Status Buku";
         CustomListColmn[7] = "Nama Petugas Input";
-        CustomListColmn[8] = "Sort Id";
+        CustomListColmn[8] = "System Id";
            
         JComboBox1.removeAllItems();
         for (int i = 0; i < CustomListColmn.length; i++) {
@@ -364,7 +364,7 @@ public class FaAdmin extends javax.swing.JFrame {
         listColmn[5] = "buku_kelas";
         listColmn[6] = "status_buku";
         listColmn[7] = "nama_petugas_input";
-        listColmn[8] = "sort_id";
+        listColmn[8] = "system_id";
         
         
         
@@ -1175,9 +1175,9 @@ public class FaAdmin extends javax.swing.JFrame {
             Connection conn = (Connection) DriverManager.getConnection(DB_URL,USER,PASS);
             Statement st = conn.createStatement();
             String sql = nmSql;
-            String dirr = new File(".").getCanonicalPath()+"/src/programasps/backend/"; //untuk didalam Netbeans 8.2
+            //String dirr = new File(".").getCanonicalPath()+"/src/programasps/backend/"; //untuk didalam Netbeans 8.2
             //--masih ada problem jika menggunakan new File(), maka membuat baru di lokasi baru 
-            //String dirr = new File("../src/programasps/backend/").getCanonicalPath()+"/"; //untuk ketika build
+            String dirr = new File("../src/programasps/backend/").getCanonicalPath()+"/"; //untuk ketika build
             
             
             System.out.println(dirr);

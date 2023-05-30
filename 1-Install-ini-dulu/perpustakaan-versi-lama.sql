@@ -17,7 +17,7 @@ CREATE TABLE perpustakaan.tbl_tamu (
   `asal` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `catatan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tanggal` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sort_id` INT(255) COLLATE utf8mb4_unicode_ci DEFAULT 0
+  `system_id` INT(255) COLLATE utf8mb4_unicode_ci DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
@@ -34,7 +34,7 @@ CREATE TABLE perpustakaan.tbl_users (
   `no_tlp` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL, 
   `agama` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `alamat` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sort_id` INT(255) COLLATE utf8mb4_unicode_ci DEFAULT 0
+  `system_id` INT(255) COLLATE utf8mb4_unicode_ci DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
@@ -46,7 +46,7 @@ CREATE TABLE perpustakaan.tbl_buku (
   `penerbit_oleh` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tahun_buku` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `nama_petugas_input` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sort_id` INT(255) COLLATE utf8mb4_unicode_ci NOT NULL AUTO_INCREMENT PRIMARY KEY
+  `system_id` INT(255) COLLATE utf8mb4_unicode_ci NOT NULL AUTO_INCREMENT PRIMARY KEY
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
@@ -59,7 +59,7 @@ CREATE TABLE perpustakaan.tbl_pinjam (
   `tgl_peminjaman` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL, 
   `tgl_pengembalian` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `id_user_peminjam` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT 'BELUM ADA',
-  `sort_id` INT(255) COLLATE utf8mb4_unicode_ci DEFAULT 0
+  `system_id` INT(255) COLLATE utf8mb4_unicode_ci DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*TIDAK DIPINJAM - DIPINJAM - DIKEMBALIKAN*/
@@ -82,7 +82,7 @@ CREATE TABLE perpustakaan.tbl_kotakSaran (
   `nama` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
   `saran` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `tanggal` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sort_id` INT(255) COLLATE utf8mb4_unicode_ci DEFAULT 0
+  `system_id` INT(255) COLLATE utf8mb4_unicode_ci DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Setelah table Pengembalian -> Denda -> KotakSaran*/
@@ -112,7 +112,7 @@ CREATE TABLE perpustakaan.tbl_pengumuman (
 
 /*-- INPUT -------------------------------------------------------------*/
 
-INSERT INTO `tbl_users`(`id`, `nama`, `email`, `password`, `noid`, `peran`, `terakhir_login`, `jenis_kelamin`, `no_tlp`, `agama`, `alamat`,`sort_id`) VALUES 
+INSERT INTO `tbl_users`(`id`, `nama`, `email`, `password`, `noid`, `peran`, `terakhir_login`, `jenis_kelamin`, `no_tlp`, `agama`, `alamat`,`system_id`) VALUES 
 (NULL,"admin","admin@email.com","admin","201943500000","ADMIN","2010","LAKI-LAKI","088212789","-","J. Swadaya II No.30, Tanjung Barat, Jagakarsa, Jakarta Selatan, DKI Jakarta", NULL);
 
 /*

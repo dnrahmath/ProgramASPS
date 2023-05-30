@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import programasps.backend.config;
 
 /**
  *
@@ -75,7 +76,7 @@ public class DbMenuPinjamBuku extends javax.swing.JFrame {
             "Tahun Buku",
             "Kelas",
             "Status Buku",
-            "Sort Id"
+            "System Id"
             //"Nama petugas input"  //menghilangkan colum nama_petugas_input
         };
         for (int i = 0; i < CustomListColmn.length; i++) {
@@ -92,7 +93,7 @@ public class DbMenuPinjamBuku extends javax.swing.JFrame {
             "tahun_buku", 
             "buku_kelas",
             "status_buku",
-            "sort_id",
+            "system_id",
             "nama_petugas_input"
         };
         
@@ -364,7 +365,7 @@ public class DbMenuPinjamBuku extends javax.swing.JFrame {
             "tgl_peminjaman", 
             "tgl_pengembalian", 
             "id_user_peminjam",
-            "sort_id",
+            "system_id",
             "denda",
             "waktu_pinjam"
         };
@@ -380,7 +381,7 @@ public class DbMenuPinjamBuku extends javax.swing.JFrame {
                                      DataLogin[0][0],
                                      "0",
                                      "0",
-                                     FcMenuOperator.waktuPinjam+"",
+                                     config.waktuPinjam+"",
                                     };
             
             koneksiData conn = new koneksiData();
@@ -424,7 +425,7 @@ public class DbMenuPinjamBuku extends javax.swing.JFrame {
             "Penerbit Oleh", 
             "Tahun Buku", 
             "Status Buku",
-            "Sort Id"
+            "System Id"
             //"Nama petugas input"  //menghilangkan colum nama_petugas_input
         };
         //-------------------------------------------
@@ -435,7 +436,7 @@ public class DbMenuPinjamBuku extends javax.swing.JFrame {
             "penulis_buku", 
             "penerbit_oleh", 
             "tahun_buku", 
-            "sort_id",
+            "system_id",
             "status_buku",
             "nama_petugas_input"
         };

@@ -52,6 +52,10 @@ FROM
 				</textElement>
 				<text><![CDATA[REPORT DATA USERS]]></text>
 			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="217" height="115"/>
+				<imageExpression><![CDATA["C:\\Users\\Siti Fatonah\\Documents\\NetBeansProjects\\ProgramASPS\\src\\programasps\\backend\\logo-Kharismawita.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
