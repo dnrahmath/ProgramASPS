@@ -126,8 +126,8 @@ public class DcMenuKembalikanBuku extends javax.swing.JFrame {
         
         
         //koneksiData conn = new koneksiData();
-        String[] option = {"status_buku","id_user_peminjam"};
-        String[] search = {"DIPINJAM",DataLogin[0][0]};
+        String[] option = {"id_user_peminjam","status_buku"};
+        String[] search = {DataLogin[0][0],"DIPINJAM"};
         DataTable = koneksiData.cSelectOneDef("tbl_pinjam",listColmnPinjam,1000,option,search);
         
         

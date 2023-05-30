@@ -213,14 +213,14 @@ public class AaLoginRegisterPanel extends javax.swing.JFrame {
 
         int optionJKIndex = JCBJKelamin.getSelectedIndex();
         String optionJK = CBJK[optionJKIndex];
-
-        String listColmn[]= {
+        
+        String listColmn[]= { 
             "id",
             "nama",
             "email",
+            "password",
             "noid",
             "peran",
-            "password",
             "terakhir_login",
             "jenis_kelamin",
             "no_tlp",
@@ -232,9 +232,9 @@ public class AaLoginRegisterPanel extends javax.swing.JFrame {
             "0",
             txtnm.getText(),
             txtmail.getText(),
+            txtpass.getText(),
             txtnoid.getText(),
             optionPeran,
-            txtpass.getText(),
             dtf.format(now),
             optionJK,
             "",
@@ -242,7 +242,7 @@ public class AaLoginRegisterPanel extends javax.swing.JFrame {
             ""
         };
 
-        if(!"".equals(listColmnRow[1]) && !"".equals(listColmnRow[2]) && !"".equals(listColmnRow[3]) && !"".equals(listColmnRow[5])){
+        if(!"".equals(listColmnRow[1]) && !"".equals(listColmnRow[2]) && !"".equals(listColmnRow[3]) && !"".equals(listColmnRow[4])){
             koneksiData connInsert = new koneksiData();
             DataLogin = connInsert.cInsert("tbl_users",listColmn,listColmnRow);
 
@@ -250,7 +250,7 @@ public class AaLoginRegisterPanel extends javax.swing.JFrame {
 
             //if(!"".equals(listColmnRow[2]) && !"".equals(listColmnRow[6])){
                 koneksiData connLogin = new koneksiData();
-                DataLogin = connLogin.cSelectOneLogin("tbl_users",listColmn,100,listColmn[2],listColmnRow[2],listColmnRow[5]);
+                DataLogin = connLogin.cSelectOneLogin("tbl_users",listColmn,100,listColmn[2],listColmnRow[2],listColmnRow[3]);
 
                 if("err".equals(DataLogin[0][0]) ){  //String "err" tidak equals dengan jawaban DataLogin[0][0] = LOGIN
                     JOptionPane.showMessageDialog(
@@ -267,23 +267,22 @@ public class AaLoginRegisterPanel extends javax.swing.JFrame {
                         "Login Berhasil",
                         "Message", JOptionPane.INFORMATION_MESSAGE);
                     System.out.println("test"+DataLogin[0][0]);
-
+                    DataLogin[0][6] = dtf.format(now);
                     //---------------------------------------------------------------------
-
-                    //this.setVisible(false);//menghilangkan form menu register
-
+                
                     CbMenuUtama mUtm = new CbMenuUtama(colorBackground,colorBackgroundForm);
                     //-------------------------------------------------
-                    //Toolkit tk=Toolkit.getDefaultToolkit();
-                    //Dimension screenSize = tk.getScreenSize();
+                    //Toolkit tk=Toolkit.getDefaultToolkit(); 
+                    //Dimension screenSize = tk.getScreenSize(); 
                     //mUtm.setSize(960,screenSize.height);
-                    mUtm.setExtendedState(mUtm.MAXIMIZED_BOTH); //MAXIMIZED_BOTH | MAXIMIZED_VERT | MAXIMIZED_HORIZ
+                    mUtm.setExtendedState(mUtm.MAXIMIZED_BOTH);
                     //-------------------------------------------------
                     mUtm.setDefaultCloseOperation(mUtm.DISPOSE_ON_CLOSE);
                     mUtm.dataIn(DataLogin);
+                    mUtm.getTable();
                     mUtm.setValue();
                     mUtm.setLocationRelativeTo(null);
-
+           
                     mUtm.setVisible(true);
                 
                     //menghilangkan layar login/register
