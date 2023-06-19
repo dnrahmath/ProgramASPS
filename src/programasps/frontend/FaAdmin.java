@@ -1082,7 +1082,7 @@ public class FaAdmin extends javax.swing.JFrame {
             
             koneksiData conn = new koneksiData();
             if("tbl_buku".equals(ModeData)){ 
-                conn.cDeleteOne(ModeData,listColmn[6],listColmnRow[6]);
+                conn.cDeleteOne(ModeData,listColmn[8],listColmnRow[8]);
             }else{
                 conn.cDeleteOne(ModeData,listColmn[0],listColmnRow[0]);
             };
